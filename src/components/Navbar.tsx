@@ -6,6 +6,8 @@ import AuthForm from './Auth/AuthForm';
 import { logout } from './Auth/index';
 import { useAuth } from './Auth/useAuth';
 
+import 'tailwindcss/tailwind.css';
+
 const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLogin, setIsLogin] = useState(true);

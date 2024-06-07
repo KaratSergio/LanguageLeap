@@ -1,6 +1,8 @@
 import React, { useEffect, ReactNode } from 'react';
 import ReactDOM from 'react-dom';
 
+import 'tailwindcss/tailwind.css';
+
 interface ModalProps {
   onClose: () => void;
   children: ReactNode;

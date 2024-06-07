@@ -7,6 +7,8 @@ import Teachers from '../pages/TeachersPage';
 import Favorites from '../pages/FavoritesPage';
 import PrivateRoute from '../components/PrivateRoute';
 
+import 'tailwindcss/tailwind.css';
+
 function App() {
   return (
     <>

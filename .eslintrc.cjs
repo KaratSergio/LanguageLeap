@@ -9,14 +9,19 @@ module.exports = {
     'prettier',
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
-  parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: './tsconfig.json',
+  },
   settings: { react: { version: '18.2' } },
-  plugins: ['react-refresh'],
+  plugins: ['react-refresh', '@typescript-eslint'],
   rules: {
     'react/prop-types': 'off',
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     quotes: ['error', 'single'],
-    'no-unused-vars': ['error', { varsIgnorePattern: 'React|ReactDOM' }],
+    'no-unused-vars': ['error', { varsIgnorePattern: 'React|ReactDOM|ImportMeta' }],
   },
   overrides: [
     {

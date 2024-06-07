@@ -7,7 +7,7 @@ interface SpinnerProps {
 
 const Spinner: React.FC<SpinnerProps> = ({ loading }) => {
   return (
-    <div className="spinner-container">
+    <div className="spinner-container px-1">
       <BeatLoader color="#36D7B7" loading={loading} size={15} />
     </div>
   );
