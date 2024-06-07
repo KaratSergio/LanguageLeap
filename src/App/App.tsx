@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar';
 import Home from '../pages/HomePage';
 import Teachers from '../pages/TeachersPage';
 import Favorites from '../pages/FavoritesPage';
+import PrivateRoute from '../components/PrivateRoute';
 
 function App() {
   return (
@@ -13,7 +14,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/teachers" element={<Teachers />} />
-        <Route path="/favorites" element={<Favorites />} />
+        <Route
+          path="/favorites"
+          element={<PrivateRoute element={<Favorites />} protectedRoute={true} />}
+        />
       </Routes>
     </>
   );
