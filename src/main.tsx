@@ -4,7 +4,7 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App/App';
 
-import 'tailwindcss/tailwind.css';
+// import 'tailwindcss/tailwind.css';
 
 const rootElement = document.getElementById('root');
 if (rootElement) {
