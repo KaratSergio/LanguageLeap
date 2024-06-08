@@ -5,7 +5,7 @@ import { User } from 'firebase/auth';
 
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Spinner from './Spinner';
+import Spinner from './Loader';
 
 interface PrivateRouteProps {
   element: React.ReactElement;

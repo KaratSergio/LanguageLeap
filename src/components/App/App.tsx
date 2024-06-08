@@ -1,11 +1,11 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import Navbar from '../components/Navbar';
-import Home from '../pages/HomePage';
-import Teachers from '../pages/TeachersPage';
-import Favorites from '../pages/FavoritesPage';
-import PrivateRoute from '../components/PrivateRoute';
+import Navbar from '../Navbar';
+import Home from '../../pages/HomePage';
+import Teachers from '../../pages/TeachersPage';
+import Favorites from '../../pages/FavoritesPage';
+import PrivateRoute from '../PrivateRoute';
 
 import 'tailwindcss/tailwind.css';
 
