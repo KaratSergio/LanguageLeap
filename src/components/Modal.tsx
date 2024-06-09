@@ -1,11 +1,9 @@
-import React, { useEffect, ReactNode } from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
-
-import 'tailwindcss/tailwind.css';
 
 interface ModalProps {
   onClose: () => void;
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
 const Modal: React.FC<ModalProps> = ({ onClose, children }) => {
@@ -25,9 +23,12 @@ const Modal: React.FC<ModalProps> = ({ onClose, children }) => {
       className="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center"
       onClick={onClose}
     >
-      <div className="bg-white p-4 rounded" onClick={(e) => e.stopPropagation()}>
-        <button className="absolute top-2 right-2" onClick={onClose}>
-          X
+      <div className="relative" onClick={(e) => e.stopPropagation()}>
+        <button
+          className="absolute flex justify-center items-center top-5 right-5 text-4xl h-8 w-8"
+          onClick={onClose}
+        >
+          &times;
         </button>
         {children}
       </div>

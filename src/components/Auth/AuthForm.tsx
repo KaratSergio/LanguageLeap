@@ -1,58 +1,112 @@
 import React from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-
 import * as yup from 'yup';
-import { registerWithEmailPassword, loginWithEmailPassword } from '.';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { Resolver as ReactHookFormResolver } from 'react-hook-form';
+
+import { register, login } from './index';
 import { Navigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface IFormInput {
   email: string;
   password: string;
+  name?: string;
 }
 
-const schema = yup.object().shape({
-  email: yup.string().email('Invalid email').required('Email is required'),
-  password: yup
-    .string()
-    .min(6, 'Password must be at least 6 characters')
-    .required('Password is required'),
-});
+interface AuthFormProps {
+  isLogin?: boolean;
+  onClose: () => void;
+}
 
-const AuthForm: React.FC<{ isLogin?: boolean }> = ({ isLogin = false }) => {
+const AuthForm: React.FC<AuthFormProps> = ({ isLogin = false, onClose }) => {
+  const schema = yup.object().shape({
+    email: yup.string().email('Invalid email').required('Email is required'),
+    password: yup
+      .string()
+      .min(6, 'Password must be at least 6 characters')
+      .required('Password is required'),
+    name: !isLogin ? yup.string().required('Name is required') : yup.string().notRequired(),
+  });
+
   const {
-    register,
+    register: formRegister,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<IFormInput>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schema) as ReactHookFormResolver<IFormInput>,
   });
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-    if (isLogin) {
-      await loginWithEmailPassword(data.email, data.password);
-    } else {
-      await registerWithEmailPassword(data.email, data.password);
-      return <Navigate to="/private-page" />;
+    try {
+      if (isLogin) {
+        await login(data.email, data.password);
+        reset();
+        onClose();
+      } else {
+        await register(data.email, data.password, data.name);
+        reset();
+        onClose();
+        toast.success('Registration successful');
+        return <Navigate to="/private-page" />;
+      }
+    } catch (error) {
+      toast.error('Invalid email or password');
     }
   };
 
+  const modalTitle = isLogin ? 'Log In' : 'Registration';
+  const modalDescription = isLogin
+    ? 'Welcome back! Please enter your credentials to access your account and continue your search for a teacher.'
+    : 'Thank you for your interest in our platform! In order to register, we need some information. Please provide us with the following information';
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="p-4 bg-white shadow-md rounded">
-      <div>
-        <label>Email</label>
-        <input {...register('email')} className="border p-2 rounded w-full" />
-        {errors.email && <p className="text-red-500">{errors.email.message}</p>}
-      </div>
-      <div>
-        <label>Password</label>
-        <input type="password" {...register('password')} className="border p-2 rounded w-full" />
-        {errors.password && <p className="text-red-500">{errors.password.message}</p>}
-      </div>
-      <button type="submit" className="mt-4 bg-blue-500 text-white p-2 rounded">
-        {isLogin ? 'Login' : 'Register'}
-      </button>
-    </form>
+    <>
+      <ToastContainer position="top-center" />
+      <form onSubmit={handleSubmit(onSubmit)} className="p-16 bg-white shadow-md rounded-30">
+        <div className="flex flex-col max-w-text-modal w-full gap-5 mb-10">
+          <h2 className="font-medium text-titleColor text-40px leading-48px tracking-tighter">
+            {modalTitle}
+          </h2>
+          <p className="leading-22px text-textColor">{modalDescription}</p>
+        </div>
+        {!isLogin && (
+          <div>
+            <input
+              {...formRegister('name')}
+              placeholder="Name"
+              className="border border-borderColor py-4 px-18 mb-18 rounded-xl w-full placeholder-titleColor leading-22px"
+            />
+            {errors.name && <p className="text-red-500">{errors.name.message}</p>}
+          </div>
+        )}
+        <div>
+          <input
+            {...formRegister('email')}
+            placeholder="Email"
+            className="border border-borderColor py-4 px-18 mb-18 rounded-xl w-full placeholder-titleColor leading-22px"
+          />
+          {errors.email && <p className="text-red-500">{errors.email.message}</p>}
+        </div>
+        <div>
+          <input
+            type="password"
+            {...formRegister('password')}
+            placeholder="Password"
+            className="border border-borderColor py-4 px-18 mb-18 rounded-xl w-full placeholder-titleColor leading-22px"
+          />
+          {errors.password && <p className="text-red-500">{errors.password.message}</p>}
+        </div>
+        <button
+          type="submit"
+          className="font-bold text-lg mt-10 w-full bg-btnColor text-titleColor p-4 rounded-xl"
+        >
+          {isLogin ? 'Login' : 'Register'}
+        </button>
+      </form>
+    </>
   );
 };
 

@@ -5,13 +5,18 @@ import {
   signOut,
   onAuthStateChanged,
   User,
+  updateProfile,
 } from 'firebase/auth';
 
-export const registerWithEmailPassword = async (email: string, password: string) => {
-  return createUserWithEmailAndPassword(auth, email, password);
+export const register = async (email: string, password: string, name?: string) => {
+  const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+  if (userCredential.user && name) {
+    await updateProfile(userCredential.user, { displayName: name });
+  }
+  return userCredential;
 };
 
-export const loginWithEmailPassword = async (email: string, password: string) => {
+export const login = async (email: string, password: string) => {
   return signInWithEmailAndPassword(auth, email, password);
 };
 

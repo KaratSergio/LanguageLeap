@@ -6,8 +6,6 @@ import AuthForm from './Auth/AuthForm';
 import { logout } from './Auth/index';
 import { useAuth } from './Auth/useAuth';
 
-// import 'tailwindcss/tailwind.css';
-
 const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
@@ -23,10 +21,14 @@ const Navbar = () => {
     await logout();
   };
 
+  const handleAuthSuccess = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <nav className="bg-gray-800 p-4">
       <div className="container mx-auto flex justify-between">
-        <div className="text-white font-bold">LanguageLeap</div>
+        <div className="text-white font-bold">LearnLingo</div>
         <div className="flex space-x-4">
           <Link to="/" className="text-white">
             Home
@@ -57,7 +59,7 @@ const Navbar = () => {
       </div>
       {isModalOpen && (
         <Modal onClose={() => setIsModalOpen(false)}>
-          <AuthForm isLogin={isLogin} />
+          <AuthForm isLogin={isLogin} onClose={handleAuthSuccess} />
         </Modal>
       )}
     </nav>
