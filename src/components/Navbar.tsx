@@ -6,6 +6,8 @@ import AuthForm from './Auth/AuthForm';
 import { logout } from './Auth/index';
 import { useAuth } from './Auth/useAuth';
 
+import Button from './Button';
+
 const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
@@ -26,33 +28,41 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-gray-800 p-4">
-      <div className="container mx-auto flex justify-between">
-        <div className="text-white font-bold">LearnLingo</div>
-        <div className="flex space-x-4">
-          <Link to="/" className="text-white">
-            Home
-          </Link>
-          <Link to="/teachers" className="text-white">
-            Teachers
-          </Link>
-          {currentUser ? (
-            <Link to="/favorites" className="text-white">
-              Favorites
+    <nav className="mt-5">
+      <div className="container w-nav-bar mx-auto flex justify-between">
+        <div className="flex w-nav-page justify-between py-10">
+          <div className="text-mainBlack font-bold flex items-center ">LearnLingo</div>
+          <div className="flex gap-7  items-center">
+            <Link to="/" className="text-mainBlack">
+              Home
             </Link>
-          ) : null}
+            <Link to="/teachers" className="text-mainBlack">
+              Teachers
+            </Link>
+            {currentUser ? (
+              <Link to="/favorites" className="text-mainBlack">
+                Favorites
+              </Link>
+            ) : null}
+          </div>
+        </div>
+        <div className="flex  w-nav-auth">
           {currentUser ? (
-            <button onClick={handleLogout} className="text-white">
+            <button onClick={handleLogout} className="text-mainBlack">
               Logout
             </button>
           ) : (
             <>
-              <button onClick={() => openModal(true)} className="text-white">
+              <button type="submit" onClick={() => openModal(true)} className="text-mainBlack">
                 Login
               </button>
-              <button onClick={() => openModal(false)} className="text-white">
+              <Button
+                type="submit"
+                onClick={() => openModal(false)}
+                className="text-white py-14 px-39 ml-4 w-nav-btn-reg bg-mainBlack hover:bg-gray-900 "
+              >
                 Register
-              </button>
+              </Button>
             </>
           )}
         </div>

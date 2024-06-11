@@ -1,13 +1,16 @@
 import React from 'react';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { Resolver as ReactHookFormResolver } from 'react-hook-form';
-
 import { register, login } from './index';
+
 import { Navigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+import Button from '../Button';
 
 interface IFormInput {
   email: string;
@@ -67,7 +70,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLogin = false, onClose }) => {
       <ToastContainer position="top-center" />
       <form onSubmit={handleSubmit(onSubmit)} className="p-16 bg-white shadow-md rounded-30">
         <div className="flex flex-col max-w-text-modal w-full gap-5 mb-10">
-          <h2 className="font-medium text-titleColor text-40px leading-48px tracking-tighter">
+          <h2 className="font-medium text-mainBlack text-40px leading-48px tracking-tighter">
             {modalTitle}
           </h2>
           <p className="leading-22px text-textColor">{modalDescription}</p>
@@ -77,7 +80,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLogin = false, onClose }) => {
             <input
               {...formRegister('name')}
               placeholder="Name"
-              className="border border-borderColor py-4 px-18 mb-18 rounded-xl w-full placeholder-titleColor leading-22px"
+              className="border border-borderColor py-4 px-18 mb-18 rounded-xl w-full placeholder-mainBlack leading-22px"
             />
             {errors.name && <p className="text-red-500">{errors.name.message}</p>}
           </div>
@@ -86,7 +89,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLogin = false, onClose }) => {
           <input
             {...formRegister('email')}
             placeholder="Email"
-            className="border border-borderColor py-4 px-18 mb-18 rounded-xl w-full placeholder-titleColor leading-22px"
+            className="border border-borderColor py-4 px-18 mb-18 rounded-xl w-full placeholder-mainBlack leading-22px"
           />
           {errors.email && <p className="text-red-500">{errors.email.message}</p>}
         </div>
@@ -95,16 +98,13 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLogin = false, onClose }) => {
             type="password"
             {...formRegister('password')}
             placeholder="Password"
-            className="border border-borderColor py-4 px-18 mb-18 rounded-xl w-full placeholder-titleColor leading-22px"
+            className="border border-borderColor py-4 px-18 mb-18 rounded-xl w-full placeholder-mainBlack leading-22px"
           />
           {errors.password && <p className="text-red-500">{errors.password.message}</p>}
         </div>
-        <button
-          type="submit"
-          className="font-bold text-lg mt-10 w-full bg-btnColor text-titleColor p-4 rounded-xl"
-        >
+        <Button className="p-4 mt-10" type="submit">
           {isLogin ? 'Login' : 'Register'}
-        </button>
+        </Button>
       </form>
     </>
   );

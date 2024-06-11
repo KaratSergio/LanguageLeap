@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  background-color: #cbded3;
+  /* background-color: #cbded3; */
   /* background-image: url('./assets/background.png'); */
   background-size: auto 100%;
   background-position: center center;
