@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
-import { getCurrentUser } from './Auth';
+import { getCurrentUser } from '@services/authServices';
 import { User } from 'firebase/auth';
 
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Spinner from './Loader';
-
-interface PrivateRouteProps {
-  element: React.ReactElement;
-  protectedRoute: boolean;
-}
+import { PrivateRouteProps } from './types';
+import Spinner from '@helpers/Loader';
 
 const PrivateRoute: React.FC<PrivateRouteProps> = ({ element, protectedRoute }) => {
   const [loading, setLoading] = useState(true);

@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Modal from './Modal';
+import Modal from '../Custom/CustomModal/Modal';
 
-import AuthForm from './Auth/AuthForm';
-import { logout } from './Auth/index';
-import { useAuth } from './Auth/useAuth';
+import AuthForm from '../Auth/AuthForm';
+import { logout } from '@services/authServices';
+import { useAuth } from '@hooks/useAuth';
 
-import Button from './Button';
+import Button from '../Custom/CustomButton/Button';
 
 const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);

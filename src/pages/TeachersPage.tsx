@@ -1,5 +1,4 @@
-import React from 'react';
-import TeachersList from '../components/TeachersList';
+import TeachersList from '../components/TeachersList/TeachersList';
 
 const Teachers = () => {
   return (

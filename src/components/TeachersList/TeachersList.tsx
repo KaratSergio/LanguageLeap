@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchTeachersList } from '../redux/data/data-actions';
-import { selectTeachers, selectLoading, selectError } from '../redux/data/data-selectors';
-import { AppDispatch, RootState } from '../redux/store';
-import { Teacher, Review } from '../redux/data/data-types';
+import { fetchTeachersList } from '@redux/data/data-actions';
 
-import Loader from './Loader';
+import { AppDispatch, RootState } from '@redux/store';
+import { Teacher, Review } from '@redux/data/data-types';
+import { selectTeachers, selectLoading, selectError } from '@redux/data/data-selectors';
+
+import Loader from '@helpers/Loader';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

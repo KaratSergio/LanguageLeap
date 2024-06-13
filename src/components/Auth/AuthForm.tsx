@@ -1,37 +1,19 @@
 import React from 'react';
-import * as yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
-
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { Resolver as ReactHookFormResolver } from 'react-hook-form';
-import { register, login } from './index';
-
 import { Navigate } from 'react-router-dom';
+import { useForm, SubmitHandler } from 'react-hook-form';
+
+import { yupResolver } from '@hookform/resolvers/yup';
+import { login, register } from '@services/authServices';
+import { loginSchema, registerSchema } from '@utils/validationSchemas';
+
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { IFormInput, AuthFormProps } from './types';
 
-import Button from '../Button';
-
-interface IFormInput {
-  email: string;
-  password: string;
-  name?: string;
-}
-
-interface AuthFormProps {
-  isLogin?: boolean;
-  onClose: () => void;
-}
+import Button from '../Custom/CustomButton/Button';
 
 const AuthForm: React.FC<AuthFormProps> = ({ isLogin = false, onClose }) => {
-  const schema = yup.object().shape({
-    email: yup.string().email('Invalid email').required('Email is required'),
-    password: yup
-      .string()
-      .min(6, 'Password must be at least 6 characters')
-      .required('Password is required'),
-    name: !isLogin ? yup.string().required('Name is required') : yup.string().notRequired(),
-  });
+  const schema = isLogin ? loginSchema : registerSchema;
 
   const {
     register: formRegister,
@@ -39,7 +21,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLogin = false, onClose }) => {
     reset,
     formState: { errors },
   } = useForm<IFormInput>({
-    resolver: yupResolver(schema) as ReactHookFormResolver<IFormInput>,
+    resolver: yupResolver(schema),
   });
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
@@ -82,7 +64,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLogin = false, onClose }) => {
               placeholder="Name"
               className="border border-borderColor py-4 px-18 mb-18 rounded-xl w-full placeholder-mainBlack leading-22px"
             />
-            {errors.name && <p className="text-red-500">{errors.name.message}</p>}
+            {errors.name && <p className="text-red-500">{errors.name?.message}</p>}
           </div>
         )}
         <div>
@@ -91,7 +73,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLogin = false, onClose }) => {
             placeholder="Email"
             className="border border-borderColor py-4 px-18 mb-18 rounded-xl w-full placeholder-mainBlack leading-22px"
           />
-          {errors.email && <p className="text-red-500">{errors.email.message}</p>}
+          {errors.email && <p className="text-red-500">{errors.email?.message}</p>}
         </div>
         <div>
           <input
@@ -100,7 +82,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLogin = false, onClose }) => {
             placeholder="Password"
             className="border border-borderColor py-4 px-18 mb-18 rounded-xl w-full placeholder-mainBlack leading-22px"
           />
-          {errors.password && <p className="text-red-500">{errors.password.message}</p>}
+          {errors.password && <p className="text-red-500">{errors.password?.message}</p>}
         </div>
         <Button className="p-4 mt-10" type="submit">
           {isLogin ? 'Login' : 'Register'}

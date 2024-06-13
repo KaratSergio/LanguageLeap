@@ -1,11 +1,10 @@
-import React from 'react';
 import { Routes, Route } from 'react-router-dom';
+import Navbar from '../Navbar/Navbar';
+import PrivateRoute from '@routes/PrivateRoute';
 
-import Navbar from '../Navbar';
-import Home from '../../pages/HomePage';
-import Teachers from '../../pages/TeachersPage';
-import Favorites from '../../pages/FavoritesPage';
-import PrivateRoute from '../PrivateRoute';
+import Home from '@pages/HomePage';
+import Teachers from '@pages/TeachersPage';
+import Favorites from '@pages/FavoritesPage';
 
 function App() {
   return (
