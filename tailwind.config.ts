@@ -16,6 +16,8 @@ const config: Config = {
         btnColorYh: '#FFDC86',
         yellowLight: '#FBE9BA',
         pinkBg: '#F8F8F8',
+        blueLogo: '#338AF3',
+        yellowLogo: '#FFDA44',
       },
       width: {
         'text-modal': '438px',
@@ -24,13 +26,17 @@ const config: Config = {
         'nav-auth': '255px',
         'nav-btn-reg': '166px',
         '1288': '1288px',
-        '720': '720px',
         '568': '568px',
         '548': '548px',
-        '471': '471px',
       },
       maxWidth: {
+        '720': '720px',
+        '548': '548px',
+        '471': '471px',
         'text-modal': '438px',
+      },
+      height: {
+        '14': '14px',
       },
       padding: {
         '18': '18px',
@@ -56,9 +62,10 @@ const config: Config = {
       lineHeight: {
         '48px': '48px',
         '22px': '22px',
+        '56': '56px',
       },
       letterSpacing: {
-        '-2': '-0.02em',
+        m2: '-0.02em',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

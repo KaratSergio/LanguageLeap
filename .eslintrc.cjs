@@ -25,9 +25,11 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['*.tsx'],
+      files: ['*.tsx', '*.ts'],
       rules: {
         'react/jsx-uses-react': 'off',
+        'react/react-in-jsx-scope': 'off',
+        'no-undef': 'off',
       },
     },
   ],

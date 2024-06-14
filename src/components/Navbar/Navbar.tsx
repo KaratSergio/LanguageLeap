@@ -7,6 +7,7 @@ import { logout } from '@services/authServices';
 import { useAuth } from '@hooks/useAuth';
 
 import Button from '../Custom/CustomButton/Button';
+import Icon from '../Icon/Icon';
 
 const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -31,7 +32,14 @@ const Navbar = () => {
     <nav className="mt-5">
       <div className="container w-nav-bar mx-auto flex justify-between">
         <div className="flex w-nav-page justify-between py-10">
-          <div className="text-mainBlack font-bold flex items-center ">LearnLingo</div>
+          <div className="text-mainBlack font-bold flex items-center ">
+            <div className="relative w-7 h-7 mr-2 rounded-full overflow-hidden">
+              <div className="absolute inset-0 bg-yellowLogo rounded-full"></div>
+              <div className="absolute top-0 left-0 right-0 bg-blueLogo h-14 rounded-t-full"></div>
+            </div>
+
+            <p>LearnLingo</p>
+          </div>
           <div className="flex gap-7  items-center">
             <Link to="/" className="text-mainBlack">
               Home
@@ -55,6 +63,7 @@ const Navbar = () => {
             <>
               <button type="submit" onClick={() => openModal(true)} className="text-mainBlack">
                 Login
+                <Icon id="icon-login" strokeColor="stroke-btnColorY" className="ml-2" />
               </button>
               <Button
                 type="submit"

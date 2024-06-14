@@ -27,6 +27,6 @@
       "@routes/*": ["src/routes/*"]
     }
   },
-  "include": ["**/*.ts", "**/*.tsx", "src/main.tsx"],
+  "include": ["**/*.ts", "**/*.tsx", "src/main.tsx", "src/global.d.ts"],
   "exclude": ["node_modules"]
 }
