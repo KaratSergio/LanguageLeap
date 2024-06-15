@@ -10,7 +10,9 @@ const config: Config = {
     extend: {
       colors: {
         textColor: 'rgba(18, 20, 23, 0.8)',
+        alfaGrey: 'rgba(18, 20, 23, 0.7)',
         borderColor: 'rgba(18, 20, 23, 0.1)',
+        borderGrey: '#8A8A89',
         mainBlack: '#121417',
         btnColorY: '#F4C550',
         btnColorYh: '#FFDC86',
@@ -25,12 +27,13 @@ const config: Config = {
         'nav-page': '661px',
         'nav-auth': '255px',
         'nav-btn-reg': '166px',
-        '1288': '1288px',
-        '568': '568px',
+        '1312': '1312px',
         '548': '548px',
       },
       maxWidth: {
+        '1312': '1312px',
         '720': '720px',
+        '568': '568px',
         '548': '548px',
         '471': '471px',
         'text-modal': '438px',
@@ -66,6 +69,9 @@ const config: Config = {
       },
       letterSpacing: {
         m2: '-0.02em',
+      },
+      spacing: {
+        'border-spacing-10': '2.5rem',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
