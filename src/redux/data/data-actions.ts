@@ -3,13 +3,18 @@ import { ref, get } from 'firebase/database';
 import { database } from '../../firebase';
 import { Teacher } from './data-types';
 
-export const fetchTeachersList = createAsyncThunk<Teacher[]>('teachers/fetchTeachers', async () => {
+export const fetchTeachersList = createAsyncThunk<
+  { teachers: Teacher[]; total: number },
+  { startAfter: number; limit: number }
+>('teachers/fetchTeachers', async ({ startAfter, limit }) => {
   const dbRef = ref(database);
   const snapshot = await get(dbRef);
   if (snapshot.exists()) {
     const data = snapshot.val();
-    return Object.values(data) as Teacher[];
+    const teachers = Object.values(data).slice(startAfter, startAfter + limit) as Teacher[];
+    const total = Object.keys(data).length;
+    return { teachers, total };
   } else {
-    throw new Error('No data available');
+    throw new Error('No data');
   }
 });

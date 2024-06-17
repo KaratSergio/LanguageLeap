@@ -11,7 +11,7 @@ const config: Config = {
       colors: {
         textColor: 'rgba(18, 20, 23, 0.8)',
         alfaGrey: 'rgba(18, 20, 23, 0.7)',
-        borderColor: 'rgba(18, 20, 23, 0.1)',
+        borderColor: 'rgba(18, 20, 23, 0.2)',
         borderGrey: '#8A8A89',
         mainBlack: '#121417',
         btnColorY: '#F4C550',
@@ -20,6 +20,7 @@ const config: Config = {
         pinkBg: '#F8F8F8',
         blueLogo: '#338AF3',
         yellowLogo: '#FFDA44',
+        yellowStar: '#FFC531',
       },
       width: {
         'text-modal': '438px',
@@ -32,10 +33,12 @@ const config: Config = {
       },
       maxWidth: {
         '1312': '1312px',
+        '1184': '1184px',
         '720': '720px',
         '568': '568px',
         '548': '548px',
         '471': '471px',
+        '232': '232px',
         'text-modal': '438px',
       },
       height: {
@@ -55,9 +58,10 @@ const config: Config = {
       },
       borderRadius: {
         '30': '30px',
+        '35': '35px',
       },
       fontFamily: {
-        roboto: ['Roboto', 'sans-serif'],
+        sans: ['Roboto', 'sans-serif'],
       },
       fontSize: {
         '40px': '40px',

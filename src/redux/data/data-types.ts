@@ -1,3 +1,5 @@
+import { PayloadAction } from '@reduxjs/toolkit';
+
 export interface Review {
   reviewer_name: string;
   reviewer_rating: number;
@@ -22,5 +24,20 @@ export interface Teacher {
 export interface TeachersState {
   teachers: Teacher[];
   loading: boolean;
+  total: number;
   error: string | null;
+}
+
+export interface FetchTeachersPayload {
+  teachers: Teacher[];
+  total: number;
+}
+
+export interface FulfilledAction extends PayloadAction<FetchTeachersPayload> {
+  meta: {
+    arg: {
+      startAfter: number;
+      limit: number;
+    };
+  };
 }
