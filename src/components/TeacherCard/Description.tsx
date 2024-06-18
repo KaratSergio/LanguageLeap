@@ -3,9 +3,9 @@ import { Teacher } from '@redux/data/data-types';
 const Description: React.FC<{ teacher: Teacher }> = ({ teacher }) => {
   return (
     <>
-      <h2 className="text-2xl font-medium mt-2">
+      <h3 className="text-2xl font-medium mt-2">
         {teacher.name} {teacher.surname}
-      </h2>
+      </h3>
 
       <div className="mt-8 font-medium flex flex-col gap-2">
         <p>

@@ -1,11 +1,12 @@
-import React from 'react';
+import TeachersFavorites from '@components/TeachersFavorites/TeachersFavorites';
 
-const Favorites = () => {
+const Favorite = () => {
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-4xl font-bold mb-4">Favorites</h1>
-    </div>
+    <section className="container mx-auto">
+      <h2 className="invisible text-sm">Favorites</h2>
+      <TeachersFavorites />
+    </section>
   );
 };
 
-export default Favorites;
+export default Favorite;

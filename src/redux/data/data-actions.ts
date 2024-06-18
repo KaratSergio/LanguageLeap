@@ -7,7 +7,7 @@ export const fetchTeachersList = createAsyncThunk<
   { teachers: Teacher[]; total: number },
   { startAfter: number; limit: number }
 >('teachers/fetchTeachers', async ({ startAfter, limit }) => {
-  const dbRef = ref(database);
+  const dbRef = ref(database, 'teachers');
   const snapshot = await get(dbRef);
   if (snapshot.exists()) {
     const data = snapshot.val();

@@ -1,7 +1,18 @@
-import { Teacher } from '@redux/data/data-types';
+import React from 'react';
 import Icon from '../Icon/Icon';
+import { Teacher } from '@redux/data/data-types';
+
+import useFavoriteTeacher from '@hooks/useFavoriteTeacher';
+import Modal from '../Custom/CustomModal/Modal';
 
 const Header: React.FC<{ teacher: Teacher }> = ({ teacher }) => {
+  const { isFavorite, isModalVisible, toggleFavorite, handleCloseModal } =
+    useFavoriteTeacher(teacher);
+
+  const handleFavoriteClick = () => {
+    toggleFavorite();
+  };
+
   return (
     <div className="flex font-medium w-[968px] justify-between">
       <div className="flex flex-col">
@@ -30,10 +41,26 @@ const Header: React.FC<{ teacher: Teacher }> = ({ teacher }) => {
             Price/1 hour: <span className="text-green-500">{teacher.price_per_hour}$</span>
           </p>
         </div>
-        <div>
-          <Icon id="icon-like-off" width="w-[26px]" strokeColor="stroke-black" />
+        <div className="cursor-pointer" onClick={handleFavoriteClick}>
+          {isFavorite ? (
+            <Icon
+              id="icon-like-on"
+              width="w-[26px]"
+              color="fill-btnColorY"
+              strokeColor="stroke-btnColorY"
+            />
+          ) : (
+            <Icon id="icon-like-off" width="w-[26px]" strokeColor="stroke-black" />
+          )}
         </div>
       </div>
+      {isModalVisible && (
+        <Modal onClose={handleCloseModal}>
+          <div className="flex items-center rounded-30 bg-white w-96 h-64 p-6 ">
+            <p>Only authorized users can add to favorites</p>
+          </div>
+        </Modal>
+      )}
     </div>
   );
 };

@@ -5,7 +5,8 @@ import InfoPanel from '@components/InfoPanel/InfoPanel';
 
 const Home = () => {
   return (
-    <div className="container mx-auto mt-5 flex flex-col">
+    <section className="container mx-auto flex flex-col">
+      <h2 className="invisible text-sm">Home Page</h2>
       <div className="container w-1312 mx-auto flex">
         <div className="w-full max-w-720 mr-6 rounded-30 px-16 py-98 bg-pinkBg ">
           <h1 className="text-5xl font-medium tracking-m2 leading-56 mb-4 max-w-548 w-full">
@@ -36,7 +37,7 @@ const Home = () => {
         ></div>
       </div>
       <InfoPanel />
-    </div>
+    </section>
   );
 };
 export default Home;

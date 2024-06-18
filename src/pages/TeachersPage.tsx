@@ -2,9 +2,10 @@ import TeachersList from '../components/TeachersList/TeachersList';
 
 const Teachers = () => {
   return (
-    <div className="container mx-auto p-4">
+    <section className="container mx-auto">
+      <h2 className="invisible text-sm">Teachers</h2>
       <TeachersList />
-    </div>
+    </section>
   );
 };
 

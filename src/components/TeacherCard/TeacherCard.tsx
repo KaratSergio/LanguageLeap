@@ -27,6 +27,7 @@ const TeacherCard: React.FC<{ teacher: Teacher }> = ({ teacher }) => {
       </div>
       <div>
         <Header teacher={teacher} />
+
         <Description teacher={teacher} />
 
         <button onClick={toggleExpanded} className="text-mainBlack my-8">
@@ -46,7 +47,7 @@ const TeacherCard: React.FC<{ teacher: Teacher }> = ({ teacher }) => {
           <Button
             type="button"
             onClick={toggleExpanded}
-            className="text-mainBlack py-4 max-w-232 px-12 mx-auto  mt-8"
+            className="text-mainBlack py-4 max-w-232 px-12 mx-auto mt-8"
           >
             Book trial lesson
           </Button>

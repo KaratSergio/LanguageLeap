@@ -21,6 +21,7 @@ const config: Config = {
         blueLogo: '#338AF3',
         yellowLogo: '#FFDA44',
         yellowStar: '#FFC531',
+        pageBg: '#F8F8F8',
       },
       width: {
         'text-modal': '438px',

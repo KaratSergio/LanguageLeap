@@ -10,13 +10,26 @@ const Modal: React.FC<ModalProps> = ({ onClose, children }) => {
       }
     };
 
+    const disableScroll = () => {
+      document.body.style.overflow = 'hidden';
+    };
+
+    const enableScroll = () => {
+      document.body.style.overflow = '';
+    };
+
     window.addEventListener('keydown', handleEsc);
-    return () => window.removeEventListener('keydown', handleEsc);
+    disableScroll();
+
+    return () => {
+      window.removeEventListener('keydown', handleEsc);
+      enableScroll();
+    };
   }, [onClose]);
 
   return ReactDOM.createPortal(
     <div
-      className="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center"
+      className="fixed z-50 inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center"
       onClick={onClose}
     >
       <div className="relative" onClick={(e) => e.stopPropagation()}>

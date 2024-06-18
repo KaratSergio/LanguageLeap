@@ -7,7 +7,7 @@ import { selectTeachers, selectLoading, selectError, selectTotal } from '@redux/
 import Loader from '@helpers/Loader';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import Button from '../Custom/CustomButton/Button';
 import TeacherCard from '../TeacherCard/TeacherCard';
 
 const TeachersList: React.FC = () => {
@@ -62,14 +62,18 @@ const TeachersList: React.FC = () => {
   }
 
   return (
-    <div className="container flex flex-col justify-center items-center mx-auto gap-8">
-      {teachers.map((teacher: Teacher, index: number) => (
-        <TeacherCard key={index} teacher={teacher} />
+    <div className="container bg-pageBg flex flex-col p-24 items-center mx-auto gap-8">
+      {teachers.map((teacher: Teacher) => (
+        <TeacherCard key={teacher.id} teacher={teacher} />
       ))}
       {teachers.length < total && (
-        <button onClick={handleLoadMore} className="bg-blue-500 text-white py-2 px-4 rounded">
+        <Button
+          type="button"
+          onClick={handleLoadMore}
+          className="bg-btnColorY text-mainColor mx-auto py-4 px-12 max-w-[183px] rounded-xl"
+        >
           Load more
-        </button>
+        </Button>
       )}
     </div>
   );
