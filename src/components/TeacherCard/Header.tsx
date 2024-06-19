@@ -1,16 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Icon from '../Icon/Icon';
 import { Teacher } from '@redux/data/data-types';
-
 import useFavoriteTeacher from '@hooks/useFavoriteTeacher';
-import Modal from '../Custom/CustomModal/Modal';
+import InfoPopUp from '../InfoPopUp/InfoPopUp';
 
 const Header: React.FC<{ teacher: Teacher }> = ({ teacher }) => {
-  const { isFavorite, isModalVisible, toggleFavorite, handleCloseModal } =
-    useFavoriteTeacher(teacher);
+  const { isFavorite, toggleFavorite } = useFavoriteTeacher(teacher);
+  const [isInfoPopUpVisible, setIsInfoPopUpVisible] = useState(false);
 
   const handleFavoriteClick = () => {
-    toggleFavorite();
+    if (!isFavorite) {
+      setIsInfoPopUpVisible(true);
+    } else {
+      toggleFavorite();
+    }
+  };
+
+  const handleCloseInfoPopUp = () => {
+    setIsInfoPopUpVisible(false);
   };
 
   return (
@@ -54,13 +61,7 @@ const Header: React.FC<{ teacher: Teacher }> = ({ teacher }) => {
           )}
         </div>
       </div>
-      {isModalVisible && (
-        <Modal onClose={handleCloseModal}>
-          <div className="flex items-center rounded-30 bg-white w-96 h-64 p-6 ">
-            <p>Only authorized users can add to favorites</p>
-          </div>
-        </Modal>
-      )}
+      {isInfoPopUpVisible && <InfoPopUp onClose={handleCloseInfoPopUp} />}
     </div>
   );
 };

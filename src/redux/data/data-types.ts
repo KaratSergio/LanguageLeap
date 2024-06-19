@@ -3,6 +3,7 @@ import { PayloadAction } from '@reduxjs/toolkit';
 export interface Review {
   reviewer_name: string;
   reviewer_rating: number;
+  reviewer_avatar_url: string;
   comment: string;
 }
 
