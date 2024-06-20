@@ -1,6 +1,7 @@
+import React from 'react';
 import TeachersFavorites from '@components/TeachersFavorites/TeachersFavorites';
 
-const Favorite = () => {
+const Favorite: React.FC = () => {
   return (
     <section className="container mx-auto">
       <h2 className="invisible text-sm">Favorites</h2>

@@ -7,6 +7,7 @@ import { selectTeachers, selectLoading, selectError, selectTotal } from '@redux/
 import Loader from '@helpers/Loader';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 import Button from '../Custom/CustomButton/Button';
 import TeacherCard from '../TeacherCard/TeacherCard';
 

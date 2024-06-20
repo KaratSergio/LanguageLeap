@@ -1,9 +1,10 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import firstImage from '@assets/img/face.png';
 import secondImage from '@assets/img/mac/mac-yellow.png';
 import InfoPanel from '@components/InfoPanel/InfoPanel';
 
-const Home = () => {
+const Home: React.FC = () => {
   return (
     <section className="container mx-auto flex flex-col">
       <h2 className="invisible text-sm">Home Page</h2>
