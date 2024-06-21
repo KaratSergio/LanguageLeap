@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+// import { BrowserRouter } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -14,9 +15,11 @@ if (rootElement) {
     <React.StrictMode>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <BrowserRouter basename="/Language_Leap">
+          {/* <BrowserRouter basename="/Language_Leap"> */}
+          <Router>
             <App />
-          </BrowserRouter>
+          </Router>
+          {/* </BrowserRouter> */}
         </PersistGate>
       </Provider>
     </React.StrictMode>
