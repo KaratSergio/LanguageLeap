@@ -27,7 +27,7 @@ const InfoPopUp: React.FC<InfoPopUpProps> = ({ onClose }) => {
         </Modal>
       ) : (
         <Modal onClose={onClose}>
-          <div className="flex flex-col items-center rounded-30 bg-white w-96 h-64 p-4">
+          <div className="flex flex-col items-center bg-btnColorYh rounded-30 w-96 h-64 p-4">
             <div className="flex flex-col justify-around items-center rounded-30 font-semibold w-64 h-56 text-center bg-btnColorYh">
               <p>
                 Only authorized users!!!
@@ -35,11 +35,11 @@ const InfoPopUp: React.FC<InfoPopUpProps> = ({ onClose }) => {
               </p>
               <div className="flex flex-wrap items-center justify-center mt-4">
                 <p>You can</p>
-                <Button type="button" className="mx-1 w-14" onClick={() => openModal(true)}>
+                <Button type="button" className="mx-1 max-w-14" onClick={() => openModal(true)}>
                   Login
                 </Button>
                 <p>or</p>
-                <Button type="button" className="mx-1 w-20" onClick={() => openModal(false)}>
+                <Button type="button" className="mx-1 max-w-20" onClick={() => openModal(false)}>
                   Register
                 </Button>
                 <p className="text-borderGrey font-normal">to access this feature.</p>
