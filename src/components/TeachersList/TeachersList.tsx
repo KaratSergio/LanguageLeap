@@ -17,7 +17,6 @@ const TeachersList: React.FC = () => {
   const loading = useAppSelector(selectLoading);
   const error = useAppSelector(selectError);
   const total = useAppSelector(selectTotal);
-  const [startAfter, setStartAfter] = useState(0);
   const [initialFetchDone, setInitialFetchDone] = useState(false);
 
   const limit = 4;
@@ -25,7 +24,9 @@ const TeachersList: React.FC = () => {
   useEffect(() => {
     const fetchInitialTeachers = async () => {
       try {
-        await dispatch(fetchTeachersList({ startAfter: 0, limit }));
+        if (teachers.length === 0) {
+          await dispatch(fetchTeachersList({ startAfter: 0, limit }));
+        }
         setInitialFetchDone(true);
       } catch (error) {
         console.error('Error executing request:', error);
@@ -36,17 +37,11 @@ const TeachersList: React.FC = () => {
     if (!initialFetchDone) {
       fetchInitialTeachers();
     }
-
-    return () => {
-      setStartAfter(0);
-    };
-  }, [dispatch, initialFetchDone]);
+  }, [dispatch, teachers.length, initialFetchDone]);
 
   const handleLoadMore = async () => {
-    const newStartAfter = startAfter + limit;
-    setStartAfter(newStartAfter);
     try {
-      await dispatch(fetchTeachersList({ startAfter: newStartAfter, limit }));
+      await dispatch(fetchTeachersList({ startAfter: teachers.length, limit }));
     } catch (error) {
       console.error('Error executing request:', error);
       toast.error(`Error: ${error}`);
