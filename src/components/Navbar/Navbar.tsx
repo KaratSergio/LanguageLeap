@@ -30,15 +30,15 @@ const Navbar = () => {
 
   return (
     <nav className="mt-5">
-      <div className="container w-nav-bar mx-auto flex justify-between">
-        <div className="flex w-nav-page justify-between py-10">
-          <div className="font-bold flex items-center">
+      <div className="w-full max-w-nav-bar mx-auto flex justify-between">
+        <div className="flex w-full max-w-nav-page justify-between py-10">
+          <Link to="/" className="font-bold flex items-center">
             <div className="relative w-7 h-7 mr-2 rounded-full overflow-hidden">
               <div className="absolute inset-0 bg-yellowLogo rounded-full"></div>
               <div className="absolute top-0 left-0 right-0 bg-blueLogo h-14 rounded-t-full"></div>
             </div>
-            <p>LearnLingo</p>
-          </div>
+            <p className="text-xl font-medium">LearnLingo</p>
+          </Link>
           <ul className="flex gap-7 items-center">
             <li>
               <Link to="/">Home</Link>
@@ -53,15 +53,16 @@ const Navbar = () => {
             )}
           </ul>
         </div>
-        <div className="flex w-nav-auth">
+        <div className="font-bold flex max-w-nav-auth">
           {currentUser ? (
             <button type="button" onClick={handleLogout}>
-              Logout
+              Log out
+              <Icon id="icon-logout" strokeColor="stroke-btnColorY" className="ml-2" />
             </button>
           ) : (
             <>
               <button type="button" onClick={() => openModal(true)}>
-                Login
+                Log in
                 <Icon id="icon-login" strokeColor="stroke-btnColorY" className="ml-2" />
               </button>
               <Button
@@ -69,7 +70,7 @@ const Navbar = () => {
                 onClick={() => openModal(false)}
                 className="text-white py-14 px-39 ml-4 w-nav-btn-reg bg-mainBlack hover:bg-gray-900"
               >
-                Register
+                Registration
               </Button>
             </>
           )}

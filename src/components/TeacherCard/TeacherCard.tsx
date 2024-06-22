@@ -16,7 +16,7 @@ const TeacherCard: React.FC<{ teacher: Teacher }> = ({ teacher }) => {
   };
 
   return (
-    <div className="bg-white w-full max-w-1184 flex rounded-3xl p-6">
+    <div className=" bg-white w-full max-w-1184 flex rounded-3xl p-6">
       <Avatar teacher={teacher} />
       <div>
         <Header teacher={teacher} />
@@ -24,7 +24,9 @@ const TeacherCard: React.FC<{ teacher: Teacher }> = ({ teacher }) => {
         <Description teacher={teacher} />
 
         <button onClick={toggleExpanded} className="text-mainBlack my-8">
-          <span className="custom-underline">{isExpanded ? 'Show Less' : 'Read More'}</span>
+          <span className="font-medium custom-underline">
+            {isExpanded ? 'Show Less' : 'Read More'}
+          </span>
         </button>
 
         {isExpanded && (

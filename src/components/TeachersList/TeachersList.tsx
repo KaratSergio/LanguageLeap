@@ -24,9 +24,7 @@ const TeachersList: React.FC = () => {
   useEffect(() => {
     const fetchInitialTeachers = async () => {
       try {
-        if (teachers.length === 0) {
-          await dispatch(fetchTeachersList({ startAfter: 0, limit }));
-        }
+        await dispatch(fetchTeachersList({ startAfter: 0, limit }));
         setInitialFetchDone(true);
       } catch (error) {
         console.error('Error executing request:', error);
@@ -58,7 +56,7 @@ const TeachersList: React.FC = () => {
   }
 
   return (
-    <div className="container bg-pageBg flex flex-col p-24 items-center mx-auto gap-8">
+    <div className=" bg-pageBg flex flex-col p-24 items-center mx-auto gap-8">
       {teachers.map((teacher: Teacher) => (
         <TeacherCard key={teacher.id} teacher={teacher} />
       ))}

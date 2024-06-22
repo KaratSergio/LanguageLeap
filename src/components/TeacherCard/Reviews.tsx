@@ -19,8 +19,8 @@ const Reviews: React.FC<{ teacher: Teacher }> = ({ teacher }) => {
                   id="icon-star"
                   width="w-4"
                   height="h-4"
-                  strokeColor="stroke-yellowStar"
                   color="fill-yellowStar"
+                  strokeColor="stroke-yellowStar"
                 />
                 <p className="text-sm">{review.reviewer_rating.toFixed(1)}</p>
               </div>

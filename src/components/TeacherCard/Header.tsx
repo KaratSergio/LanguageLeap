@@ -12,12 +12,12 @@ const Header: React.FC<{ teacher: Teacher }> = ({ teacher }) => {
   };
 
   return (
-    <div className="flex font-medium w-[968px] justify-between">
+    <div className="flex font-medium w-968 justify-between">
       <div className="flex flex-col">
         <p className="text-borderGrey">Languages</p>
       </div>
-      <div className="flex w-[697px] justify-between">
-        <div className="flex w-[607px] justify-center">
+      <div className="flex w-full flex-wrap max-w-[697px] justify-between">
+        <div className="flex w-full flex-wrap max-w-[607px] justify-center">
           <div className="flex gap-2 items-center relative pr-4 with-line">
             <Icon id="icon-book" width="w-4" height="h-4" strokeColor="stroke-black" />
             <p>Lessons online</p>
