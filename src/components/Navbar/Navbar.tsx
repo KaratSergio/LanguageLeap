@@ -57,13 +57,23 @@ const Navbar = () => {
           {currentUser ? (
             <button type="button" onClick={handleLogout}>
               Log out
-              <Icon id="icon-logout" strokeColor="stroke-btnColorY" className="ml-2" />
+              <Icon
+                id="icon-logout"
+                color="fill-btnColorY"
+                strokeColor="stroke-btnColorY"
+                className="ml-2"
+              />
             </button>
           ) : (
             <>
               <button type="button" onClick={() => openModal(true)}>
                 Log in
-                <Icon id="icon-login" strokeColor="stroke-btnColorY" className="ml-2" />
+                <Icon
+                  id="icon-login"
+                  color="fill-btnColorY"
+                  strokeColor="stroke-btnColorY"
+                  className="ml-2"
+                />
               </button>
               <Button
                 type="button"

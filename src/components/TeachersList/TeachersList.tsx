@@ -56,7 +56,7 @@ const TeachersList: React.FC = () => {
   }
 
   return (
-    <div className=" bg-pageBg flex flex-col p-24 items-center mx-auto gap-8">
+    <div className=" bg-pageBg flex flex-col pad-padding mobile-padding p-24 items-center mx-auto gap-8">
       {teachers.map((teacher: Teacher) => (
         <TeacherCard key={teacher.id} teacher={teacher} />
       ))}

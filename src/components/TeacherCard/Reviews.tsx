@@ -5,7 +5,7 @@ const Reviews: React.FC<{ teacher: Teacher }> = ({ teacher }) => {
   return (
     <>
       {teacher.reviews.map((review: Review, reviewIndex: number) => (
-        <div key={reviewIndex} className="flex flex-col mb-8 font-medium">
+        <div key={reviewIndex} className="flex text-mob-size flex-col mb-8 font-medium">
           <div className="flex mb-4 gap-3">
             <img
               src={review.reviewer_avatar_url}

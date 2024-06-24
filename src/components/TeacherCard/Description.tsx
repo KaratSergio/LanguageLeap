@@ -3,11 +3,7 @@ import { Teacher } from '@redux/data/data-types';
 const Description: React.FC<{ teacher: Teacher }> = ({ teacher }) => {
   return (
     <>
-      <h2 className="text-2xl font-medium mt-2">
-        {teacher.name} {teacher.surname}
-      </h2>
-
-      <div className="mt-8 font-medium flex flex-col gap-2">
+      <div className="mt-8 text-mob-size font-medium flex flex-col gap-2">
         <p>
           <span className="text-borderGrey">Speaks:</span>{' '}
           {teacher.languages.map((language, index) => (
