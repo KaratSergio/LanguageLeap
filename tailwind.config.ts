@@ -25,7 +25,7 @@ const config: Config = {
       },
       width: {
         'text-modal': '438px',
-        'nav-auth': '255px',
+        '255': '255px',
         'nav-btn-reg': '166px',
         '1312': '1312px',
         '548': '548px',

@@ -1,66 +1,29 @@
-import React, { useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '@redux/store';
-import { fetchTeachersList } from '@redux/data/data-actions';
-import { Teacher } from '@redux/data/data-types';
-import { selectTeachers, selectLoading, selectError, selectTotal } from '@redux/data/data-selectors';
-
 import Loader from '@helpers/Loader';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import { useTeachers } from '@hooks/useTeachers';
 import Button from '../Custom/CustomButton/Button';
 import TeacherCard from '../TeacherCard/TeacherCard';
 
 const TeachersList: React.FC = () => {
-  const dispatch = useAppDispatch();
-  const teachers = useAppSelector(selectTeachers);
-  const loading = useAppSelector(selectLoading);
-  const error = useAppSelector(selectError);
-  const total = useAppSelector(selectTotal);
-  const [initialFetchDone, setInitialFetchDone] = useState(false);
+  const { teachers, loading, error, total, itemsToShow, handleLoadMore } = useTeachers(4);
 
-  const limit = 4;
-
-  useEffect(() => {
-    const fetchInitialTeachers = async () => {
-      try {
-        await dispatch(fetchTeachersList({ startAfter: 0, limit }));
-        setInitialFetchDone(true);
-      } catch (error) {
-        console.error('Error executing request:', error);
-        toast.error(`Error: ${error}`);
-      }
-    };
-
-    if (!initialFetchDone) {
-      fetchInitialTeachers();
-    }
-  }, [dispatch, teachers.length, initialFetchDone]);
-
-  const handleLoadMore = async () => {
-    try {
-      await dispatch(fetchTeachersList({ startAfter: teachers.length, limit }));
-    } catch (error) {
-      console.error('Error executing request:', error);
-      toast.error(`Error: ${error}`);
-    }
-  };
-
-  if (loading && !initialFetchDone) {
+  if (loading && !teachers.length) {
     return <Loader loading={loading} />;
   }
 
-  if (error && !initialFetchDone) {
+  if (error && !teachers.length) {
     toast.error(`Error: ${error}`);
     return null;
   }
 
   return (
-    <div className=" bg-pageBg flex flex-col pad-padding mobile-padding p-24 items-center mx-auto gap-8">
-      {teachers.map((teacher: Teacher) => (
+    <div className="bg-pageBg flex flex-col pad-padding mobile-padding p-24 items-center mx-auto gap-8">
+      {teachers.slice(0, itemsToShow).map((teacher) => (
         <TeacherCard key={teacher.id} teacher={teacher} />
       ))}
-      {teachers.length < total && (
+      {itemsToShow < total && (
         <Button
           type="button"
           onClick={handleLoadMore}
