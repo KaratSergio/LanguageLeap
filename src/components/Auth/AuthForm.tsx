@@ -11,9 +11,9 @@ import { toast, ToastContainer } from 'react-toastify';
 import { useAuthFormText } from '@hooks/useAuthFormText';
 
 import FormHeader from './FormHeader';
-import InputField from './InputField';
+import InputField from '../Custom/InputField';
 import PasswordInputField from './PasswordInputField';
-import Button from '../Custom/CustomButton/Button';
+import Button from '../Custom/Button';
 
 const AuthForm: React.FC<AuthFormProps> = ({ isLogin = false, onClose }) => {
   const schema = isLogin ? loginSchema : registerSchema;
@@ -49,7 +49,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ isLogin = false, onClose }) => {
   return (
     <>
       <ToastContainer position="top-center" />
-      <form onSubmit={handleSubmit(onSubmit)} className="p-16 bg-white shadow-md rounded-30">
+      <form onSubmit={handleSubmit(onSubmit)} className="bg-white  rounded-30">
         <FormHeader title={modalTitle} description={modalDescription} />
         {!isLogin && (
           <InputField placeholder="Name" register={formRegister('name')} error={errors.name} />

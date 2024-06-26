@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Teacher } from '@redux/data/data-types';
-import Button from '../Custom/CustomButton/Button';
+import Button from '../Custom/Button';
+import TeacherModal from '../TeacherModal/TeacherModal';
 
 import Avatar from './Avatar';
 import Header from './Header';
@@ -10,9 +11,14 @@ import Footer from './Footer';
 
 const TeacherCard: React.FC<{ teacher: Teacher }> = ({ teacher }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleExpanded = () => {
     setIsExpanded(!isExpanded);
+  };
+
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
   };
 
   return (
@@ -39,7 +45,7 @@ const TeacherCard: React.FC<{ teacher: Teacher }> = ({ teacher }) => {
           {isExpanded && (
             <Button
               type="button"
-              onClick={toggleExpanded}
+              onClick={toggleModal}
               className="text-mainBlack py-4 max-w-232 px-12 mx-auto mt-8"
             >
               Book trial lesson
@@ -47,6 +53,7 @@ const TeacherCard: React.FC<{ teacher: Teacher }> = ({ teacher }) => {
           )}
         </div>
       </div>
+      {isModalOpen && <TeacherModal onClose={toggleModal} teacher={teacher} />}
     </div>
   );
 };

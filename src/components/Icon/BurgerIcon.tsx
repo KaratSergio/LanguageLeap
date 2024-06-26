@@ -8,7 +8,7 @@ const BurgerIcon: React.FC<BurgerIconProps> = ({ isOpen }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className={`relative z-50 w-6 h-6 ${isOpen ? 'open' : 'closed'}`}
+      className={`relative z-50 w-12 h-12 ${isOpen ? 'open' : 'closed'}`}
       viewBox="0 0 24 24"
       strokeWidth="2"
       stroke="currentColor"

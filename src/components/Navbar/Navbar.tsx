@@ -6,8 +6,9 @@ import { useAuth } from '@hooks/useAuth';
 
 import Icon from '../Icon/Icon';
 import BurgerIcon from '../Icon/BurgerIcon';
-import Modal from '../Custom/CustomModal/Modal';
-import Button from '../Custom/CustomButton/Button';
+import Modal from '../Custom/Modal';
+import Button from '../Custom/Button';
+import MobileMenu from './MobileMenu';
 
 const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -34,7 +35,7 @@ const Navbar = () => {
 
   return (
     <nav className="mt-5">
-      <div className="w-full max-w-nav-bar mx-auto flex justify-between p-8">
+      <div className="w-full max-w-nav-bar mx-auto flex justify-between px-8">
         <div className="flex w-full max-w-nav-page justify-between py-10">
           <Link to="/" className="font-bold flex items-center">
             <div className="relative w-7 h-7 mr-2 rounded-full overflow-hidden">
@@ -74,7 +75,7 @@ const Navbar = () => {
               />
             </button>
           ) : (
-            <div className="w-255">
+            <div className="w-255 flex">
               <button type="button" onClick={() => openModal(true)}>
                 Log in
                 <Icon
@@ -87,7 +88,7 @@ const Navbar = () => {
               <Button
                 type="button"
                 onClick={() => openModal(false)}
-                className="text-white py-14 px-39 ml-4 w-nav-btn-reg bg-mainBlack hover:bg-gray-900"
+                className="flex justify-center text-white py-14 px-39 ml-4 w-nav-btn-reg bg-mainBlack hover:bg-gray-900"
               >
                 Registration
               </Button>
@@ -96,80 +97,18 @@ const Navbar = () => {
         </div>
       </div>
       {/* MOBILE MENU */}
-      <div
-        className={`fixed inset-0 z-40 bg-white transform ${
-          isMenuOpen ? 'translate-y-0' : '-translate-y-full'
-        } transition-transform duration-300 ease-in-out`}
-      >
-        <ul className="flex flex-col gap-4 items-center mt-8">
-          <li>
-            <Link to="/" onClick={() => setIsMenuOpen(false)}>
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link to="/teachers" onClick={() => setIsMenuOpen(false)}>
-              Teachers
-            </Link>
-          </li>
-          {currentUser && (
-            <li>
-              <Link to="/favorites" onClick={() => setIsMenuOpen(false)}>
-                Favorites
-              </Link>
-            </li>
-          )}
-        </ul>
-        <div className="font-bold flex flex-col items-center mt-12">
-          {currentUser ? (
-            <button
-              type="button"
-              onClick={() => {
-                handleLogout();
-                setIsMenuOpen(false);
-              }}
-            >
-              Log out
-              <Icon
-                id="icon-logout"
-                color="fill-btnColorY"
-                strokeColor="stroke-btnColorY"
-                className="ml-2"
-              />
-            </button>
-          ) : (
-            <>
-              <button
-                type="button"
-                onClick={() => {
-                  openModal(true);
-                  setIsMenuOpen(false);
-                }}
-              >
-                Log in
-                <Icon
-                  id="icon-login"
-                  color="fill-btnColorY"
-                  strokeColor="stroke-btnColorY"
-                  className="ml-2"
-                />
-              </button>
-              <Button
-                type="button"
-                onClick={() => {
-                  openModal(false);
-                  setIsMenuOpen(false);
-                }}
-                className="text-white py-14 px-39 mt-4 w-nav-btn-reg bg-mainBlack hover:bg-gray-900"
-              >
-                Registration
-              </Button>
-            </>
-          )}
-        </div>
-      </div>
+      <MobileMenu
+        isMenuOpen={isMenuOpen}
+        setIsMenuOpen={setIsMenuOpen}
+        currentUser={currentUser}
+        openModal={openModal}
+        handleLogout={handleLogout}
+      />
       {isModalOpen && (
-        <Modal onClose={() => setIsModalOpen(false)}>
+        <Modal
+          onClose={() => setIsModalOpen(false)}
+          className={`modal-content ${isLogin ? 'login-modal' : 'registration-modal'}`}
+        >
           <AuthForm isLogin={isLogin} onClose={handleAuthSuccess} />
         </Modal>
       )}

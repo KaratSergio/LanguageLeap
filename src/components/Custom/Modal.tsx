@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { ModalProps } from './types';
 
-const Modal: React.FC<ModalProps> = ({ onClose, children }) => {
+const Modal: React.FC<ModalProps> = ({ onClose, children, className }) => {
   useEffect(() => {
     const handleEsc = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
@@ -32,7 +32,10 @@ const Modal: React.FC<ModalProps> = ({ onClose, children }) => {
       className="fixed z-50 inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center"
       onClick={onClose}
     >
-      <div className="relative" onClick={(e) => e.stopPropagation()}>
+      <div
+        className={`bg-white relative max-w-[600px] rounded-30 w-full p-16 ${className}`}
+        onClick={(e) => e.stopPropagation()}
+      >
         <button
           className="absolute flex justify-center items-center top-5 right-5 text-4xl h-8 w-8"
           onClick={onClose}

@@ -86,6 +86,12 @@ const config: Config = {
       },
     },
   },
+  variants: {
+    extend: {
+      backgroundColor: ['checked'],
+      borderColor: ['checked'],
+    },
+  },
   plugins: [],
 };
 export default config;

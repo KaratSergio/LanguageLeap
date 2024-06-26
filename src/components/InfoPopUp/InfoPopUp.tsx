@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Modal from '../Custom/CustomModal/Modal';
-import Button from '../Custom/CustomButton/Button';
+import Modal from '../Custom/Modal';
+import Button from '../Custom/Button';
 import AuthForm from '../Auth/AuthForm';
 
 interface InfoPopUpProps {

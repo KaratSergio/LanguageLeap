@@ -16,13 +16,6 @@ export interface FormHeaderProps {
   description: string;
 }
 
-export interface InputFieldProps {
-  placeholder: string;
-  register: UseFormRegisterReturn;
-  error?: FieldError;
-  type?: string;
-}
-
 export interface PasswordInputFieldProps {
   placeholder: string;
   register: UseFormRegisterReturn;

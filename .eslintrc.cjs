@@ -21,6 +21,7 @@ module.exports = {
     'react/prop-types': 'off',
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     quotes: ['error', 'single'],
+    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     'no-unused-vars': ['error', { varsIgnorePattern: 'React|ReactDOM|ImportMeta' }],
   },
   overrides: [

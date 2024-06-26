@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { useTeachers } from '@hooks/useTeachers';
-import Button from '../Custom/CustomButton/Button';
+import Button from '../Custom/Button';
 import TeacherCard from '../TeacherCard/TeacherCard';
 
 const TeachersList: React.FC = () => {
