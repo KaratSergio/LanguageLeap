@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ref, onValue } from 'firebase/database';
 import { database, auth } from '../../firebase';
+import { Link } from 'react-router-dom';
 
 import Loader from '@helpers/Loader';
 import { Teacher } from '@redux/data/data-types';
@@ -44,6 +45,21 @@ const TeachersFavorites = () => {
 
   if (loading) {
     return <Loader loading={loading} />;
+  }
+
+  if (favoriteTeacherIds.length === 0) {
+    return (
+      <div className="flex flex-wrap mt-24 gap-1 justify-center items-center h-full">
+        <p className="text-lg text-center text-gray-600">No favorite teachers found.</p>
+        <Link
+          to="/teachers"
+          className="inline-flex bg-btnColorY hover:bg-btnColorYh text-mainBlack text-lg font-bold py-1 px-4 rounded-xl"
+        >
+          Add some teachers
+        </Link>
+        <p>to your favorites list.</p>
+      </div>
+    );
   }
 
   return (

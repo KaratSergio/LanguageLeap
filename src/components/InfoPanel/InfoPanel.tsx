@@ -1,9 +1,6 @@
 const InfoPanel = () => {
   return (
-    <section
-      className="flex justify-center w-full mt-6 mx-auto max-w-1312 gap-[100px]  rounded-30 border-dashed border-2 border-borderGrey py-[35px]"
-      style={{ borderSpacing: '2.5rem' }}
-    >
+    <section className="info-panel flex flex-col md:flex-row justify-center w-full mt-6 mx-auto max-w-1312 gap-[100px] custom-gap rounded-30 border-dashed dashed-border border-2 border-borderGrey py-[35px]">
       <article className="flex w-[237px] justify-center items-center">
         <p className="font-semibold text-[28px]">32,000 +</p>
         <p className="ml-4 text-sm w-24 text-alfaGrey">Experienced tutors</p>

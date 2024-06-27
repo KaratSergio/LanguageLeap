@@ -33,6 +33,11 @@ button {
   cursor: pointer;
 }
 
+.border-top {
+  border-top: 1px solid #ccc;
+  padding-top: 20px;
+}
+
 .modal-content {
   width: 600px;
   max-width: 90%;
@@ -78,6 +83,48 @@ button {
 
   .reverse {
     flex-direction: row-reverse;
+  }
+}
+
+@media (max-width: 1250px) {
+  .custom-gap {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 1040px) {
+  .pad-home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+  }
+  .pad-box-w {
+    width: 100%;
+    max-width: 700px;
+    margin: 0px;
+  }
+  .custom-gap {
+    gap: 24px;
+  }
+
+  .info-panel {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .info-panel article {
+    width: 100%;
+  }
+
+  .info-panel article:nth-child(3) {
+    margin-left: 2px;
+  }
+
+  .info-panel article:nth-child(4) {
+    margin-left: 11px;
   }
 }
 

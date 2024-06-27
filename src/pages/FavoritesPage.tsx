@@ -1,4 +1,3 @@
-import React from 'react';
 import TeachersFavorites from '@components/TeachersFavorites/TeachersFavorites';
 
 const Favorite: React.FC = () => {

@@ -10,3 +10,7 @@ export interface FormData {
   email: string;
   phone: string;
 }
+
+export interface ModalFormProps {
+  onClose: () => void;
+}

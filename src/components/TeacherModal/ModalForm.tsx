@@ -1,9 +1,9 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
-import InputField from '../Custom/InputField';
-import { FormData } from './types';
 import Button from '../Custom/Button';
+import InputField from '../Custom/InputField';
+import { FormData, ModalFormProps } from './types';
 
-const ModalForm: React.FC = () => {
+const ModalForm: React.FC<ModalFormProps> = ({ onClose }) => {
   const {
     register,
     handleSubmit,
@@ -12,6 +12,7 @@ const ModalForm: React.FC = () => {
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
     console.log(data);
+    onClose();
   };
 
   return (

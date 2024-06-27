@@ -30,7 +30,7 @@ const TeacherModal: React.FC<ModalProps & { teacher: Teacher }> = ({
           </div>
         </div>
         <RadioButtonGroup />
-        <ModalForm />
+        <ModalForm onClose={onClose} />
       </div>
     </Modal>
   );

@@ -26,14 +26,17 @@ const InfoPopUp: React.FC<InfoPopUpProps> = ({ onClose }) => {
           <AuthForm isLogin={isLogin} onClose={closeModal} />
         </Modal>
       ) : (
-        <Modal onClose={onClose}>
-          <div className="flex flex-col items-center bg-btnColorYh rounded-30 w-96 h-64 p-4">
-            <div className="flex flex-col justify-around items-center rounded-30 font-semibold w-64 h-56 text-center bg-btnColorYh">
+        <Modal onClose={onClose} className=" px-[36px]">
+          <div className="flex flex-col items-center w-full bg-btnColorYh rounded-30 p-4">
+            <div className="flex flex-col justify-around items-center rounded-30 text-xl md:text-2xl font-semibold w-full max-w-96 text-center bg-btnColorYh">
               <p>
                 Only authorized users!!!
-                <br /> <span className="text-borderGrey font-normal">can add to favorites</span>
+                <br />{' '}
+                <span className="text-borderGrey font-normal text-base md:text-2xl">
+                  can add to favorites
+                </span>
               </p>
-              <div className="flex flex-wrap items-center justify-center mt-4">
+              <div className="flex flex-wrap items-center  border-top  justify-center mt-4">
                 <p>You can</p>
                 <Button type="button" className="mx-1 max-w-14" onClick={() => openModal(true)}>
                   Login
@@ -42,7 +45,9 @@ const InfoPopUp: React.FC<InfoPopUpProps> = ({ onClose }) => {
                 <Button type="button" className="mx-1 max-w-20" onClick={() => openModal(false)}>
                   Register
                 </Button>
-                <p className="text-borderGrey font-normal">to access this feature.</p>
+                <p className=" text-borderGrey font-normal text-base md:text-2xl">
+                  to access this feature.
+                </p>
               </div>
             </div>
           </div>
