@@ -1,13 +1,26 @@
-import Loader from '@helpers/Loader';
+import { useEffect } from 'react';
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { useTeachers } from '@src/hooks/useTeachers';
+import { fetchTeachersList } from '@redux/data/data-actions';
+import { useAppDispatch, useAppSelector } from '@redux/store';
 
-import { useTeachers } from '@hooks/useTeachers';
+import Loader from '@helpers/Loader';
 import Button from '../Custom/Button';
+import Filter from '../Filters/Filters';
 import TeacherCard from '../TeacherCard/TeacherCard';
 
+import { selectLanguageFilter, selectLevelFilter, selectPriceFilter } from '@redux/filters/filters-selectors';
+
 const TeachersList: React.FC = () => {
+  const dispatch = useAppDispatch();
   const { teachers, loading, error, total, itemsToShow, handleLoadMore } = useTeachers(4);
+  const languageFilter = useAppSelector(selectLanguageFilter);
+  const levelFilter = useAppSelector(selectLevelFilter);
+  const priceFilter = useAppSelector(selectPriceFilter);
+
+  useEffect(() => {
+    dispatch(fetchTeachersList({ startAfter: 0, limit: 4 }));
+  }, [dispatch]);
 
   if (loading && !teachers.length) {
     return <Loader loading={loading} />;
@@ -18,9 +31,26 @@ const TeachersList: React.FC = () => {
     return null;
   }
 
+  const filteredTeachers = teachers.filter((teacher) => {
+    let matches = true;
+    if (languageFilter && !teacher.languages.includes(languageFilter)) {
+      matches = false;
+    }
+    if (levelFilter && !teacher.levels.includes(levelFilter)) {
+      matches = false;
+    }
+    if (priceFilter && teacher.price_per_hour !== priceFilter) {
+      matches = false;
+    }
+    return matches;
+  });
+
   return (
     <div className="bg-pageBg flex flex-col pad-padding mobile-padding p-24 items-center mx-auto gap-8">
-      {teachers.slice(0, itemsToShow).map((teacher) => (
+      <div className="w-full items-start">
+        <Filter />
+      </div>
+      {filteredTeachers.slice(0, itemsToShow).map((teacher) => (
         <TeacherCard key={teacher.id} teacher={teacher} />
       ))}
       {itemsToShow < total && (
