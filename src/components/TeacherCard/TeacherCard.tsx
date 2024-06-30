@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Teacher } from '@redux/data/data-types';
+import { useState } from 'react';
 import Button from '../Custom/Button';
+import { Teacher } from '@redux/data/data-types';
 import TeacherModal from '../TeacherModal/TeacherModal';
 
 import Avatar from './Avatar';
@@ -31,9 +31,7 @@ const TeacherCard: React.FC<{ teacher: Teacher }> = ({ teacher }) => {
 
         <div className="reviews">
           <button onClick={toggleExpanded} className="text-mainBlack my-8">
-            <span className="font-medium custom-underline">
-              {isExpanded ? 'Show Less' : 'Read More'}
-            </span>
+            <span className="font-medium custom-underline">{isExpanded ? 'Show Less' : 'Read More'}</span>
           </button>
           {isExpanded && (
             <div>
@@ -43,11 +41,7 @@ const TeacherCard: React.FC<{ teacher: Teacher }> = ({ teacher }) => {
           )}
           <Footer teacher={teacher} />
           {isExpanded && (
-            <Button
-              type="button"
-              onClick={toggleModal}
-              className="text-mainBlack py-4 max-w-232 px-12 mx-auto mt-8"
-            >
+            <Button type="button" onClick={toggleModal} className="text-mainBlack py-4 max-w-232 px-12 mx-auto mt-8">
               Book trial lesson
             </Button>
           )}

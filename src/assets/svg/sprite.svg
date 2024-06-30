@@ -25,5 +25,8 @@
     <symbol id="icon-eye-off" viewBox="0 0 32 32">
       <path stroke-linejoin="round" stroke-linecap="round" stroke-width="3.2" d="M23.92 23.92A13.43 13.43 0 0 1 16 26.667C6.667 26.667 1.333 16 1.333 16A24.605 24.605 0 0 1 8.08 8.08m5.12-2.427a12.161 12.161 0 0 1 2.8-.32C25.333 5.333 30.667 16 30.667 16a24.646 24.646 0 0 1-2.88 4.253m-8.96-1.426a4.01 4.01 0 0 1-2.855 1.273 3.994 3.994 0 0 1-4.069-4.07 3.999 3.999 0 0 1 1.273-2.855M1.333 1.333l29.333 29.333"/>
     </symbol>
+    <symbol id="icon-chevron-down" viewBox="0 0 32 32">
+      <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3.2" d="M8 12l8 8 8-8"></path>
+    </symbol>
   </defs>
 </svg>

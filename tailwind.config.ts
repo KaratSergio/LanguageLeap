@@ -34,6 +34,7 @@ const config: Config = {
       maxWidth: {
         'nav-bar': '1184px',
         'nav-page': '661px',
+        '1376': '1376px',
         '1312': '1312px',
         '1184': '1184px',
         '968': '968px',

@@ -1,5 +1,6 @@
-import { useEffect } from 'react';
 import { toast } from 'react-toastify';
+import { useEffect, useState } from 'react';
+import { Teacher } from '@redux/data/data-types';
 import { useTeachers } from '@src/hooks/useTeachers';
 import { fetchTeachersList } from '@redux/data/data-actions';
 import { useAppDispatch, useAppSelector } from '@redux/store';
@@ -17,10 +18,33 @@ const TeachersList: React.FC = () => {
   const languageFilter = useAppSelector(selectLanguageFilter);
   const levelFilter = useAppSelector(selectLevelFilter);
   const priceFilter = useAppSelector(selectPriceFilter);
+  const [allTeachers, setAllTeachers] = useState<Teacher[]>([]);
+  const [filtersApplied, setFiltersApplied] = useState<boolean>(false);
 
   useEffect(() => {
-    dispatch(fetchTeachersList({ startAfter: 0, limit: 4 }));
+    dispatch(fetchTeachersList({ startAfter: 0, limit: 4 }))
+      .unwrap()
+      .then((data) => setAllTeachers(data.teachers));
   }, [dispatch]);
+
+  useEffect(() => {
+    const fetchAllTeachers = async () => {
+      try {
+        const result = await dispatch(fetchTeachersList({ startAfter: 0, limit: total })).unwrap();
+        setAllTeachers(result.teachers);
+      } catch (error) {
+        console.error('Error fetching all teachers:', error);
+        toast.error(`Error: ${error}`);
+      }
+    };
+
+    if (languageFilter || levelFilter || priceFilter) {
+      setFiltersApplied(true);
+      fetchAllTeachers();
+    } else {
+      setFiltersApplied(false);
+    }
+  }, [dispatch, languageFilter, levelFilter, priceFilter, total]);
 
   if (loading && !teachers.length) {
     return <Loader loading={loading} />;
@@ -31,7 +55,7 @@ const TeachersList: React.FC = () => {
     return null;
   }
 
-  const filteredTeachers = teachers.filter((teacher) => {
+  const filteredTeachers = allTeachers.filter((teacher) => {
     let matches = true;
     if (languageFilter && !teacher.languages.includes(languageFilter)) {
       matches = false;
@@ -39,21 +63,26 @@ const TeachersList: React.FC = () => {
     if (levelFilter && !teacher.levels.includes(levelFilter)) {
       matches = false;
     }
-    if (priceFilter && teacher.price_per_hour !== priceFilter) {
+    if (priceFilter.min !== null && teacher.price_per_hour < priceFilter.min) {
+      matches = false;
+    }
+    if (priceFilter.max !== null && teacher.price_per_hour > priceFilter.max) {
       matches = false;
     }
     return matches;
   });
 
+  const displayTeachers = filtersApplied ? filteredTeachers : teachers.slice(0, itemsToShow);
+
   return (
-    <div className="bg-pageBg flex flex-col pad-padding mobile-padding p-24 items-center mx-auto gap-8">
+    <div className="bg-pageBg flex flex-col pad-padding mobile-padding p-24 max-w-1376 w-full items-center mx-auto gap-8">
       <div className="w-full items-start">
         <Filter />
       </div>
-      {filteredTeachers.slice(0, itemsToShow).map((teacher) => (
+      {displayTeachers.map((teacher) => (
         <TeacherCard key={teacher.id} teacher={teacher} />
       ))}
-      {itemsToShow < total && (
+      {!filtersApplied && itemsToShow < total && (
         <Button
           type="button"
           onClick={handleLoadMore}

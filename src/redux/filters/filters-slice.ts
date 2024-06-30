@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { FiltersState } from './filters-types';
+import { FiltersState, PriceFilter } from './filters-types';
 
 const initialState: FiltersState = {
   language: null,
   level: null,
-  price: null,
+  price: { min: null, max: null },
 };
 
 const filtersSlice = createSlice({
@@ -17,13 +17,13 @@ const filtersSlice = createSlice({
     setLevelFilter: (state, action: PayloadAction<string | null>) => {
       state.level = action.payload;
     },
-    setPriceFilter: (state, action: PayloadAction<number | null>) => {
+    setPriceFilter: (state, action: PayloadAction<PriceFilter>) => {
       state.price = action.payload;
     },
     resetFilters: (state) => {
       state.language = null;
       state.level = null;
-      state.price = null;
+      state.price = { min: null, max: null };
     },
   },
 });
