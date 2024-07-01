@@ -1,132 +1,8 @@
-import { useEffect, useState } from 'react';
-import { useForm, Controller, FieldValues } from 'react-hook-form';
-import { useAppDispatch, useAppSelector } from '@redux/store';
-import Select, { components } from 'react-select';
-
+import { useEffect } from 'react';
+import { useForm, FieldValues } from 'react-hook-form';
+import { useAppDispatch } from '@redux/store';
 import { setLanguageFilter, setLevelFilter, setPriceFilter } from '@redux/filters/filters-slice';
-import { selectLanguageFilter, selectLevelFilter, selectPriceFilter } from '@redux/filters/filters-selectors';
-
-import Icon from '../Icon/Icon';
-import { Option } from './types';
-
-const DropdownIndicator = (props: any) => {
-  return (
-    components.DropdownIndicator && (
-      <components.DropdownIndicator {...props}>
-        <Icon
-          id="icon-chevron-down"
-          width="w-4"
-          height="h-4"
-          strokeColor="stroke-black"
-          className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none"
-        />
-      </components.DropdownIndicator>
-    )
-  );
-};
-
-const CustomSelect: React.FC<{
-  name: 'language' | 'level' | 'price';
-  label: string;
-  options: Option[];
-  onChange: (value: string) => void;
-}> = ({ name, label, options, onChange }) => {
-  const { control, setValue } = useForm<FieldValues>();
-  const [selectedOption, setSelectedOption] = useState<Option | null>(null);
-
-  const selectedValue = useAppSelector((state) => {
-    switch (name) {
-      case 'language':
-        return selectLanguageFilter(state);
-      case 'level':
-        return selectLevelFilter(state);
-      case 'price':
-        return selectPriceFilter(state);
-      default:
-        return '';
-    }
-  });
-
-  useEffect(() => {
-    if (selectedValue !== undefined && selectedValue !== '') {
-      const option = options.find((opt) => opt.value === selectedValue) || null;
-      setSelectedOption(option);
-      setValue(name, selectedValue);
-    }
-  }, [name, selectedValue, setValue, options]);
-
-  return (
-    <div
-      className={`flex flex-col relative ${
-        name === 'language' ? 'w-[221px]' : name === 'level' ? 'w-[198px]' : 'w-[124px]'
-      }`}
-    >
-      <label htmlFor={`${name}-filter`} className="text-sm font-medium text-borderGrey mb-2">
-        {label}
-      </label>
-      <Controller
-        name={name}
-        control={control}
-        render={({ field }) => (
-          <Select
-            {...field}
-            value={selectedOption}
-            options={options}
-            onChange={(selectedOption: Option | null) => {
-              field.onChange(selectedOption?.value || '');
-              setSelectedOption(selectedOption);
-              onChange(selectedOption?.value || '');
-            }}
-            placeholder="Show all"
-            className="custom-select"
-            classNamePrefix="custom-select"
-            components={{ DropdownIndicator }}
-            styles={{
-              control: (provided) => ({
-                ...provided,
-                borderRadius: '14px',
-                minHeight: '48px',
-                border: 'none',
-              }),
-              dropdownIndicator: (provided) => ({
-                ...provided,
-                color: 'rgba(18, 20, 23, 0.2)',
-              }),
-              option: (provided, state) => ({
-                ...provided,
-                backgroundColor: '#FFFFFF',
-                color: state.isSelected ? '#121417' : 'rgba(18, 20, 23, 0.2)',
-                fontWeight: '500',
-                fontSize: '18px',
-                borderRadius: '12px',
-                whiteSpace: 'nowrap',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                maxWidth: '92%',
-                '&:hover': {
-                  backgroundColor: '#FDE68A',
-                  color: '#121417',
-                },
-              }),
-              singleValue: (provided) => ({
-                ...provided,
-                color: '#121417',
-                fontWeight: '500',
-                fontSize: '18px',
-              }),
-              placeholder: (provided) => ({
-                ...provided,
-                color: 'rgba(18, 20, 23, 0.2)',
-                fontWeight: '500',
-                fontSize: '18px',
-              }),
-            }}
-          />
-        )}
-      />
-    </div>
-  );
-};
+import CustomSelect from './CustomSelect';
 
 const Filter: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -134,7 +10,7 @@ const Filter: React.FC = () => {
     defaultValues: {
       language: '',
       level: '',
-      price: null,
+      price: '',
     },
   });
 
@@ -146,29 +22,33 @@ const Filter: React.FC = () => {
     };
 
     reset({
-      language: storedFilters.language || '',
-      level: storedFilters.level || '',
-      price: storedFilters.price || '',
+      language: storedFilters.language,
+      level: storedFilters.level,
+      price: storedFilters.price,
     });
   }, [reset]);
 
-  const handleLanguageChange = (value: string) => {
-    dispatch(setLanguageFilter(value || ''));
+  const handleLanguageChange = (value: string | null) => {
+    dispatch(setLanguageFilter(value || null));
     localStorage.setItem('languageFilter', value || '');
   };
 
-  const handleLevelChange = (value: string) => {
-    dispatch(setLevelFilter(value || ''));
+  const handleLevelChange = (value: string | null) => {
+    dispatch(setLevelFilter(value || null));
     localStorage.setItem('levelFilter', value || '');
   };
 
-  const handlePriceChange = (value: string) => {
-    const range = value.split('-');
-    const minValue = parseInt(range[0]);
-    const maxValue = parseInt(range[1]);
-
-    dispatch(setPriceFilter({ min: minValue, max: maxValue }));
-    localStorage.setItem('priceFilter', value || '');
+  const handlePriceChange = (value: string | null) => {
+    if (value === null) {
+      dispatch(setPriceFilter({ min: null, max: null }));
+      localStorage.removeItem('priceFilter');
+    } else {
+      const range = value.split('-');
+      const minValue = parseInt(range[0]);
+      const maxValue = parseInt(range[1]);
+      dispatch(setPriceFilter({ min: minValue, max: maxValue }));
+      localStorage.setItem('priceFilter', value);
+    }
   };
 
   return (

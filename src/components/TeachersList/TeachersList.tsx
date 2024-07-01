@@ -14,7 +14,8 @@ import { selectLanguageFilter, selectLevelFilter, selectPriceFilter } from '@red
 
 const TeachersList: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { teachers, loading, error, total, itemsToShow, handleLoadMore } = useTeachers(4);
+  const { teachers, loading, error, total, itemsToShow, handleLoadMore, resetItemsToShow, setItemsToShow } =
+    useTeachers(4);
   const languageFilter = useAppSelector(selectLanguageFilter);
   const levelFilter = useAppSelector(selectLevelFilter);
   const priceFilter = useAppSelector(selectPriceFilter);
@@ -33,18 +34,24 @@ const TeachersList: React.FC = () => {
         const result = await dispatch(fetchTeachersList({ startAfter: 0, limit: total })).unwrap();
         setAllTeachers(result.teachers);
       } catch (error) {
-        console.error('Error fetching all teachers:', error);
+        console.error('Error loading all teachers:', error);
         toast.error(`Error: ${error}`);
       }
     };
 
-    if (languageFilter || levelFilter || priceFilter) {
+    if (languageFilter || levelFilter || priceFilter.min !== null || priceFilter.max !== null) {
       setFiltersApplied(true);
       fetchAllTeachers();
     } else {
       setFiltersApplied(false);
     }
   }, [dispatch, languageFilter, levelFilter, priceFilter, total]);
+
+  useEffect(() => {
+    if (!filtersApplied) {
+      resetItemsToShow();
+    }
+  }, [filtersApplied, resetItemsToShow]);
 
   if (loading && !teachers.length) {
     return <Loader loading={loading} />;
@@ -72,16 +79,27 @@ const TeachersList: React.FC = () => {
     return matches;
   });
 
-  const displayTeachers = filtersApplied ? filteredTeachers : teachers.slice(0, itemsToShow);
+  const displayTeachers = filtersApplied ? filteredTeachers.slice(0, itemsToShow) : teachers.slice(0, itemsToShow);
 
   return (
     <div className="bg-pageBg flex flex-col pad-padding mobile-padding p-24 max-w-1376 w-full items-center mx-auto gap-8">
       <div className="w-full items-start">
         <Filter />
       </div>
-      {displayTeachers.map((teacher) => (
-        <TeacherCard key={teacher.id} teacher={teacher} />
-      ))}
+      {displayTeachers.length === 0 ? (
+        <p className="mt-10 font-semibold text-2xl">No teachers match your filters.</p>
+      ) : (
+        displayTeachers.map((teacher) => <TeacherCard key={teacher.id} teacher={teacher} />)
+      )}
+      {filtersApplied && itemsToShow < filteredTeachers.length && (
+        <Button
+          type="button"
+          onClick={() => setItemsToShow((prevItemsToShow) => prevItemsToShow + 4)}
+          className="bg-btnColorY text-mainColor mx-auto py-4 px-12 max-w-[183px] rounded-xl"
+        >
+          Load more
+        </Button>
+      )}
       {!filtersApplied && itemsToShow < total && (
         <Button
           type="button"
