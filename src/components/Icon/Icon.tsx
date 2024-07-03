@@ -1,4 +1,3 @@
-import React from 'react';
 import { IconProps } from './types';
 import sprite from '../../assets/svg/sprite.svg';
 
@@ -9,11 +8,10 @@ const Icon: React.FC<IconProps> = ({
   color = 'fill-transparent',
   strokeColor = 'stroke-black',
   className = '',
+  style = {},
 }) => {
   return (
-    <svg
-      className={`inline-block align-middle ${width} ${height} ${color} ${strokeColor} ${className}`}
-    >
+    <svg className={`inline-block align-middle ${width} ${height} ${color} ${strokeColor} ${className}`} style={style}>
       <use href={`${sprite}#${id}`} />
     </svg>
   );

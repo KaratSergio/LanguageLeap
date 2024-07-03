@@ -7,10 +7,11 @@ import { useAuth } from '@hooks/useAuth';
 import Icon from '../Icon/Icon';
 import BurgerIcon from '../Icon/BurgerIcon';
 import Modal from '../Custom/Modal';
-import Button from '../Custom/Button';
 import MobileMenu from './MobileMenu';
+import { useTheme } from '@hooks/useTheme';
 
 const Navbar = () => {
+  const { bg: backgroundColor } = useTheme();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -69,9 +70,8 @@ const Navbar = () => {
               Log out
               <Icon
                 id="icon-logout"
-                color="fill-btnColorY"
-                strokeColor="stroke-btnColorY"
                 className="ml-2"
+                style={{ fill: backgroundColor, stroke: backgroundColor, transition: 'background-color 0.3s' }}
               />
             </button>
           ) : (
@@ -80,18 +80,17 @@ const Navbar = () => {
                 Log in
                 <Icon
                   id="icon-login"
-                  color="fill-btnColorY"
-                  strokeColor="stroke-btnColorY"
                   className="ml-2"
+                  style={{ fill: backgroundColor, stroke: backgroundColor, transition: 'background-color 0.3s' }}
                 />
               </button>
-              <Button
+              <button
                 type="button"
                 onClick={() => openModal(false)}
-                className="flex justify-center text-white py-14 px-39 ml-4 w-nav-btn-reg bg-mainBlack hover:bg-gray-900"
+                className="flex justify-center rounded-xl text-white py-14 px-39 ml-4 w-nav-btn-reg bg-mainBlack hover:bg-gray-800"
               >
                 Registration
-              </Button>
+              </button>
             </div>
           )}
         </div>

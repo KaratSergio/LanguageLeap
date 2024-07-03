@@ -13,10 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/teachers" element={<Teachers />} />
-        <Route
-          path="/favorites"
-          element={<PrivateRoute element={<Favorites />} protectedRoute={true} />}
-        />
+        <Route path="/favorites" element={<PrivateRoute element={<Favorites />} protectedRoute={true} />} />
       </Routes>
     </>
   );

@@ -2,10 +2,11 @@ import Icon from '../Icon/Icon';
 import InfoPopUp from '../InfoPopUp/InfoPopUp';
 import { Teacher } from '@redux/data/data-types';
 import useFavoriteTeacher from '@hooks/useFavoriteTeacher';
+import { useTheme } from '@hooks/useTheme';
 
 const Header: React.FC<{ teacher: Teacher }> = ({ teacher }) => {
-  const { isFavorite, toggleFavorite, isModalVisible, handleCloseModal } =
-    useFavoriteTeacher(teacher);
+  const { bg: backgroundColor } = useTheme();
+  const { isFavorite, toggleFavorite, isModalVisible, handleCloseModal } = useFavoriteTeacher(teacher);
 
   const handleFavoriteClick = () => {
     toggleFavorite();
@@ -47,17 +48,13 @@ const Header: React.FC<{ teacher: Teacher }> = ({ teacher }) => {
           </div>
         </div>
       </div>
-      <div
-        className="absolute top-0 right-0 cursor-pointer mobile-like"
-        onClick={handleFavoriteClick}
-      >
+      <div className="absolute top-0 right-0 cursor-pointer mobile-like" onClick={handleFavoriteClick}>
         {isFavorite ? (
           <Icon
             id="icon-like-on"
             width="w-[26px]"
             height="h-[26px]"
-            color="fill-btnColorY"
-            strokeColor="stroke-btnColorY"
+            style={{ fill: backgroundColor, stroke: backgroundColor, transition: 'background-color 0.3s' }}
           />
         ) : (
           <Icon id="icon-like-off" width="w-[26px]" height="h-[26px]" strokeColor="stroke-black" />

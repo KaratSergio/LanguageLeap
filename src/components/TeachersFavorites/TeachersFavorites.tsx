@@ -6,8 +6,10 @@ import { Link } from 'react-router-dom';
 import Loader from '@helpers/Loader';
 import { Teacher } from '@redux/data/data-types';
 import TeacherCard from '@components/TeacherCard/TeacherCard';
+import { useTheme } from '@hooks/useTheme';
 
 const TeachersFavorites = () => {
+  const { bg: backgroundColor, hover: hoverColor } = useTheme();
   const [favoriteTeacherIds, setFavoriteTeacherIds] = useState<string[]>([]);
   const [favoriteTeachers, setFavoriteTeachers] = useState<{ [id: string]: Teacher }>({});
   const [loading, setLoading] = useState(true);
@@ -53,7 +55,13 @@ const TeachersFavorites = () => {
         <p className="text-lg text-center text-gray-600">No favorite teachers found.</p>
         <Link
           to="/teachers"
-          className="inline-flex bg-btnColorY hover:bg-btnColorYh text-mainBlack text-lg font-bold py-1 px-4 rounded-xl"
+          className="inline-flex text-mainBlack text-lg font-bold py-1 px-4 rounded-xl"
+          style={{
+            backgroundColor: backgroundColor,
+            transition: 'background-color 0.3s',
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = hoverColor)}
+          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = backgroundColor)}
         >
           Add some teachers
         </Link>

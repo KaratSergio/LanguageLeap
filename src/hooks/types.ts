@@ -1,5 +1,6 @@
 import { Teacher } from '@redux/data/data-types';
 
+// useTeachers types
 export interface TeachersHookResult {
   teachers: Teacher[];
   loading: boolean;
@@ -10,4 +11,10 @@ export interface TeachersHookResult {
   resetItemsToShow: () => void;
   allTeachers: Teacher[];
   setItemsToShow: React.Dispatch<React.SetStateAction<number>>;
+}
+// useTheme types
+export interface Theme {
+  bg: string;
+  hover: string;
+  image: string;
 }

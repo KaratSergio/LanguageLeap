@@ -5,20 +5,14 @@ import Icon from '../Icon/Icon';
 import Button from '../Custom/Button';
 import { MobileMenuProps } from './types';
 
-const MobileMenu: React.FC<MobileMenuProps> = ({
-  isMenuOpen,
-  setIsMenuOpen,
-  currentUser,
-  openModal,
-  handleLogout,
-}) => {
+const MobileMenu: React.FC<MobileMenuProps> = ({ isMenuOpen, setIsMenuOpen, currentUser, openModal, handleLogout }) => {
   return (
     <div
       className={`fixed inset-0 z-40 bg-btnColorYh transform ${
         isMenuOpen ? 'translate-y-0' : '-translate-y-full'
       } transition-transform duration-300 ease-in-out`}
     >
-      <ul className="flex flex-col gap-4 font-semibold text-5xl items-center mt-40">
+      <ul className="flex flex-col gap-4 font-semibold text-5xl justify-center items-center mt-40">
         <li>
           <Link to="/" onClick={() => setIsMenuOpen(false)}>
             Home
@@ -47,12 +41,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
             }}
           >
             Log out
-            <Icon
-              id="icon-logout"
-              color="fill-btnColorY"
-              strokeColor="stroke-btnColorY"
-              className="ml-2"
-            />
+            <Icon id="icon-logout" color="fill-btnColorY" strokeColor="stroke-btnColorY" className="ml-2" />
           </button>
         ) : (
           <>
@@ -64,12 +53,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
               }}
             >
               Log in
-              <Icon
-                id="icon-login"
-                color="fill-btnColorY"
-                strokeColor="stroke-btnColorY"
-                className="ml-2"
-              />
+              <Icon id="icon-login" color="fill-btnColorY" strokeColor="stroke-btnColorY" className="ml-2" />
             </button>
             <Button
               type="button"

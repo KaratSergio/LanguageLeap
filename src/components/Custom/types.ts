@@ -12,6 +12,7 @@ export interface ButtonProps {
   onClick?: () => void;
   children: React.ReactNode;
   disabled?: boolean;
+  style?: React.CSSProperties;
 }
 
 export interface InputFieldProps {
