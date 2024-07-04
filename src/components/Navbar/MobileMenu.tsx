@@ -1,8 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-
 import Icon from '../Icon/Icon';
-import Button from '../Custom/Button';
+import { Link } from 'react-router-dom';
 import { MobileMenuProps } from './types';
 
 const MobileMenu: React.FC<MobileMenuProps> = ({ isMenuOpen, setIsMenuOpen, currentUser, openModal, handleLogout }) => {
@@ -55,16 +52,16 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isMenuOpen, setIsMenuOpen, curr
               Log in
               <Icon id="icon-login" color="fill-btnColorY" strokeColor="stroke-btnColorY" className="ml-2" />
             </button>
-            <Button
+            <button
               type="button"
               onClick={() => {
                 openModal(false);
                 setIsMenuOpen(false);
               }}
-              className="flex justify-center text-white py-14 px-39 mt-4 w-nav-btn-reg  bg-mainBlack hover:bg-gray-900"
+              className="flex justify-center rounded-xl text-white py-14 px-39 mt-4 w-nav-btn-reg  bg-mainBlack hover:bg-gray-900"
             >
               Registration
-            </Button>
+            </button>
           </>
         )}
       </div>

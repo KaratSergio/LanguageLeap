@@ -112,6 +112,8 @@ button {
   }
   .custom-gap {
     gap: 24px;
+    max-width: 700px;
+    width: 100%;
   }
 
   .info-panel {
@@ -136,6 +138,9 @@ button {
 @media (max-width: 878px) {
   .pad-padding {
     padding: 32px 16px;
+  }
+  .main-info {
+    padding: 80px 40px;
   }
 }
 
@@ -162,6 +167,108 @@ button {
 
   .text-mob-size {
     font-size: 14px;
+  }
+  .text-pad {
+    font-size: 20px;
+  }
+
+  .info-panel {
+    gap: 14px;
+  }
+
+  .info-panel article:nth-child(3) {
+    margin-left: -4px;
+  }
+
+  .info-panel article:nth-child(4) {
+    margin-left: 2px;
+  }
+  .main-info {
+    padding: 60px 30px;
+  }
+}
+
+@media (max-width: 490px) {
+  .text-pad {
+    font-size: 20px;
+  }
+
+  .text-mob {
+    font-size: 16px;
+  }
+
+  .padding-mob {
+    padding-left: 66px;
+    padding-right: 66px;
+  }
+
+  .info-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .info-width {
+    width: 100%;
+  }
+
+  .info-position {
+    text-align: start;
+    padding-left: 60px;
+  }
+  .info-accent {
+    padding-right: 60px;
+    margin-left: 0;
+  }
+
+  .info-panel article:nth-child(3) {
+    margin-left: -1px;
+  }
+  .info-panel article:nth-child(4) {
+    margin-left: -1px;
+  }
+
+  .bg-reduce {
+    background-size: 313px, 271px;
+    background-position:
+      bottom center,
+      center calc(100% - 86px) !important;
+    min-height: 420px !important;
+  }
+  .main-info {
+    padding: 40px 20px;
+  }
+}
+
+@media (max-width: 452px) {
+  .info-position {
+    text-align: start;
+    padding-left: 60px;
+    font-size: 16px;
+  }
+  .info-accent {
+    padding-right: 30px;
+    margin-left: 0;
+    font-size: 14px;
+  }
+  .main-text {
+    font-size: 38px;
+  }
+}
+
+@media (max-width: 410px) {
+  .info-position {
+    padding-left: 40px;
+  }
+  .bg-reduce {
+    background-size: 250px, 217px;
+    background-position:
+      bottom center,
+      center calc(100% - 69px) !important;
+    min-height: 350px !important;
+  }
+  .main-text {
+    font-size: 36px;
   }
 }
 
@@ -192,5 +299,26 @@ button {
   .dot-mob {
     top: 9px;
     right: 9px;
+  }
+
+  .info-position {
+    text-align: start;
+    padding-left: 30px;
+    font-size: 14px;
+  }
+  .info-accent {
+    padding-right: 0;
+    font-size: 12px;
+  }
+  .main-text {
+    font-size: 32px;
+    line-height: normal;
+  }
+  .bg-main-accent {
+    top: 8px;
+    height: 26px;
+  }
+  .text-pad {
+    font-size: 16px;
   }
 }

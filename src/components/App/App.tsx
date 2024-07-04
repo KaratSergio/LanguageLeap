@@ -1,20 +1,24 @@
+import { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Navbar from '../Navbar/Navbar';
 import PrivateRoute from '@routes/PrivateRoute';
+import Navbar from '../Navbar/Navbar';
+import Loader from '@helpers/Loader';
 
-import Home from '@pages/HomePage';
-import Teachers from '@pages/TeachersPage';
-import Favorites from '@pages/FavoritesPage';
+const Home = lazy(() => import('@pages/HomePage'));
+const Teachers = lazy(() => import('@pages/TeachersPage'));
+const Favorites = lazy(() => import('@pages/FavoritesPage'));
 
 function App() {
   return (
     <>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/teachers" element={<Teachers />} />
-        <Route path="/favorites" element={<PrivateRoute element={<Favorites />} protectedRoute={true} />} />
-      </Routes>
+      <Suspense fallback={<Loader loading={true} />}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/teachers" element={<Teachers />} />
+          <Route path="/favorites" element={<PrivateRoute element={<Favorites />} protectedRoute={true} />} />
+        </Routes>
+      </Suspense>
     </>
   );
 }
