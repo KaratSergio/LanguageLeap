@@ -52,7 +52,7 @@ const Filter: React.FC = () => {
   };
 
   return (
-    <form className="flex gap-5">
+    <form className="flex gap-5 mobile-box">
       <CustomSelect
         name="language"
         label="Languages"

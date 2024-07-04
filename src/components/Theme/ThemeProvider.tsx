@@ -15,7 +15,7 @@ const ThemeProvider = ({ children }: ThemeProviderProps) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setThemeColor(getRandomColor());
-    }, 240000);
+    }, 120000);
 
     return () => clearInterval(interval);
   }, []);

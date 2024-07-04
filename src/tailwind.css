@@ -89,11 +89,17 @@ button {
   .reverse {
     flex-direction: row-reverse;
   }
+  .modal-pad {
+    padding: 60px 50px;
+  }
 }
 
 @media (max-width: 1250px) {
   .custom-gap {
     gap: 40px;
+  }
+  .modal-pad {
+    padding: 50px 40px;
   }
 }
 
@@ -186,6 +192,14 @@ button {
   .main-info {
     padding: 60px 30px;
   }
+
+  .mobile-box {
+    flex-direction: column;
+    padding-left: 20px;
+  }
+  .modal-mob {
+    padding: 50px 30px;
+  }
 }
 
 @media (max-width: 490px) {
@@ -254,6 +268,12 @@ button {
   .main-text {
     font-size: 38px;
   }
+  .mob-trial-title {
+    font-size: 28px;
+  }
+  .mob-radio-box {
+    margin-top: 20px;
+  }
 }
 
 @media (max-width: 410px) {
@@ -320,5 +340,11 @@ button {
   }
   .text-pad {
     font-size: 16px;
+  }
+  .modal-mob {
+    padding: 30px 20px;
+  }
+  .modal-title-mob {
+    font-size: 32px;
   }
 }

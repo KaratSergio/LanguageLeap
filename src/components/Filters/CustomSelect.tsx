@@ -87,11 +87,13 @@ const CustomSelect: React.FC<{
             classNamePrefix="custom-select"
             components={{ DropdownIndicator }}
             styles={{
-              control: (provided) => ({
+              control: (provided, state) => ({
                 ...provided,
                 borderRadius: '14px',
                 minHeight: '48px',
                 border: 'none',
+                boxShadow: state.isFocused ? '0 0 0 1px #12141724' : 'none',
+                outline: 'none',
               }),
               dropdownIndicator: (provided) => ({
                 ...provided,
@@ -108,9 +110,12 @@ const CustomSelect: React.FC<{
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',
                 maxWidth: '92%',
+                cursor: 'pointer',
                 '&:hover': {
-                  backgroundColor: '#FDE68A',
+                  backgroundColor: '#cfcdc814',
                   color: '#121417',
+                  maxWidth: '100%',
+                  borderRadius: 'none',
                 },
               }),
               singleValue: (provided) => ({
