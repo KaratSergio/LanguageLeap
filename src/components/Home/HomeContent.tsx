@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useTheme } from '@hooks/useTheme';
-import firstImage from '@assets/img/face.png';
+import faceImage from '@assets/img/face.png';
 
 const HomeContent: React.FC = () => {
   const { bg: backgroundColor, hover: hoverColor, image: backgroundImage } = useTheme();
@@ -37,7 +37,7 @@ const HomeContent: React.FC = () => {
         style={{
           backgroundColor: hoverColor,
           transition: 'background-color 0.3s',
-          backgroundImage: `url(${backgroundImage}), url(${firstImage})`,
+          backgroundImage: `url(${backgroundImage}), url(${faceImage})`,
           backgroundPosition: 'bottom center, center calc(100% - 110px)',
           backgroundRepeat: 'no-repeat',
           minHeight: '530px',
