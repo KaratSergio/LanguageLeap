@@ -71,7 +71,7 @@ const TeachersFavorites = () => {
   }
 
   return (
-    <div className="gap-8 bg-pageBg flex flex-col p-24 items-center">
+    <div className="gap-8 bg-pageBg flex flex-col p-24 pad-padding mobile-padding items-center">
       {favoriteTeacherIds.map((teacherId: string) => (
         <TeacherCard key={teacherId} teacher={favoriteTeachers[teacherId]} />
       ))}

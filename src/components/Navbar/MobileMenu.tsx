@@ -1,13 +1,17 @@
 import Icon from '../Icon/Icon';
 import { Link } from 'react-router-dom';
 import { MobileMenuProps } from './types';
+import { useTheme } from '@hooks/useTheme';
 
 const MobileMenu: React.FC<MobileMenuProps> = ({ isMenuOpen, setIsMenuOpen, currentUser, openModal, handleLogout }) => {
+  const { bg: backgroundColor, hover: hoverColor } = useTheme();
+
   return (
     <div
-      className={`fixed inset-0 z-40 bg-btnColorYh transform ${
+      className={`fixed inset-0 z-40 transform ${
         isMenuOpen ? 'translate-y-0' : '-translate-y-full'
       } transition-transform duration-300 ease-in-out`}
+      style={{ backgroundColor: hoverColor, transition: 'background-color 1.3s' }}
     >
       <ul className="flex flex-col gap-4 font-semibold text-5xl justify-center items-center mt-40">
         <li>
@@ -38,7 +42,11 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isMenuOpen, setIsMenuOpen, curr
             }}
           >
             Log out
-            <Icon id="icon-logout" color="fill-btnColorY" strokeColor="stroke-btnColorY" className="ml-2" />
+            <Icon
+              id="icon-logout"
+              className="ml-2"
+              style={{ fill: backgroundColor, stroke: backgroundColor, transition: 'background-color 0.3s' }}
+            />
           </button>
         ) : (
           <>
@@ -50,7 +58,11 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isMenuOpen, setIsMenuOpen, curr
               }}
             >
               Log in
-              <Icon id="icon-login" color="fill-btnColorY" strokeColor="stroke-btnColorY" className="ml-2" />
+              <Icon
+                id="icon-login"
+                className="ml-2"
+                style={{ fill: backgroundColor, stroke: backgroundColor, transition: 'background-color 0.3s' }}
+              />
             </button>
             <button
               type="button"

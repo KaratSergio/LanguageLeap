@@ -274,6 +274,10 @@ button {
   .mob-radio-box {
     margin-top: 20px;
   }
+  .bg-main-accent {
+    top: 16px;
+    height: 28px;
+  }
 }
 
 @media (max-width: 410px) {
