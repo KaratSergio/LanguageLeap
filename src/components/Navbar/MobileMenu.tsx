@@ -1,7 +1,7 @@
-import Icon from '../Icon/Icon';
 import { Link } from 'react-router-dom';
 import { MobileMenuProps } from './types';
 import { useTheme } from '@hooks/useTheme';
+import Icon from '../Icon/Icon';
 
 const MobileMenu: React.FC<MobileMenuProps> = ({ isMenuOpen, setIsMenuOpen, currentUser, openModal, handleLogout }) => {
   const { bg: backgroundColor, hover: hoverColor } = useTheme();
@@ -13,7 +13,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isMenuOpen, setIsMenuOpen, curr
       } transition-transform duration-300 ease-in-out`}
       style={{ backgroundColor: hoverColor, transition: 'background-color 1.3s' }}
     >
-      <ul className="flex flex-col gap-4 font-semibold text-5xl justify-center items-center mt-40">
+      <ul className="flex flex-col gap-8 font-semibold text-5xl justify-center items-center mt-40">
         <li>
           <Link to="/" onClick={() => setIsMenuOpen(false)}>
             Home
@@ -34,20 +34,23 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isMenuOpen, setIsMenuOpen, curr
       </ul>
       <div className="font-bold flex flex-col items-center mt-12">
         {currentUser ? (
-          <button
-            type="button"
-            onClick={() => {
-              handleLogout();
-              setIsMenuOpen(false);
-            }}
-          >
-            Log out
-            <Icon
-              id="icon-logout"
-              className="ml-2"
-              style={{ fill: backgroundColor, stroke: backgroundColor, transition: 'background-color 0.3s' }}
-            />
-          </button>
+          <div className="flex items-center">
+            <p className="mr-4 font-serif tracking-widest">{currentUser.displayName}</p>
+            <button
+              type="button"
+              onClick={() => {
+                handleLogout();
+                setIsMenuOpen(false);
+              }}
+            >
+              Log out
+              <Icon
+                id="icon-logout"
+                className="ml-2"
+                style={{ fill: backgroundColor, stroke: backgroundColor, transition: 'background-color 0.3s' }}
+              />
+            </button>
+          </div>
         ) : (
           <>
             <button

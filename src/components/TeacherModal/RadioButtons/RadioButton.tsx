@@ -1,6 +1,9 @@
 import { RadioButtonProps } from '../types';
+import { useTheme } from '@hooks/useTheme';
 
 const RadioButton: React.FC<RadioButtonProps> = ({ label, value, selectedValue, onChange }) => {
+  const { bg: backgroundColor } = useTheme();
+
   const handleChange = () => {
     if (selectedValue !== value) {
       onChange(value);
@@ -18,11 +21,13 @@ const RadioButton: React.FC<RadioButtonProps> = ({ label, value, selectedValue, 
       />
       <div className="relative flex items-center">
         <div
-          className={`w-6 h-6 flex justify-center items-center rounded-full border-2 ${
-            selectedValue === value ? 'border-btnColorY bg-white' : 'border-gray-300'
-          }`}
+          className="w-6 h-6 flex justify-center items-center rounded-full  border-2"
+          style={{
+            borderColor: selectedValue === value ? backgroundColor : '',
+            backgroundColor: selectedValue === value ? 'white' : '',
+          }}
         >
-          {selectedValue === value && <div className="w-3 h-3 rounded-full bg-btnColorY"></div>}
+          {selectedValue === value && <div className="w-3 h-3 rounded-full" style={{ backgroundColor }}></div>}
         </div>
         <span className="ml-2">{label}</span>
       </div>

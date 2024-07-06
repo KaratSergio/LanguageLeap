@@ -1,17 +1,18 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import AuthForm from '../Auth/AuthForm';
 import { logout } from '@services/authServices';
 import { useAuth } from '@hooks/useAuth';
-
-import Icon from '../Icon/Icon';
-import BurgerIcon from '../Icon/BurgerIcon';
-import Modal from '../Custom/Modal';
-import MobileMenu from './MobileMenu';
 import { useTheme } from '@hooks/useTheme';
 
+import NavLinks from './NavLinks';
+import Modal from '../Custom/Modal';
+import MobileMenu from './MobileMenu';
+import AuthForm from '../Auth/AuthForm';
+import AuthControls from './AuthControls';
+import BurgerIcon from '../Icon/BurgerIcon';
+
 const Navbar = () => {
-  const { bg: backgroundColor } = useTheme();
+  const { bg: backgroundColor, hover: hoverColor } = useTheme();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -45,55 +46,19 @@ const Navbar = () => {
             </div>
             <p className="text-xl font-medium">LearnLingo</p>
           </Link>
-          <ul className="hidden md:flex gap-7 items-center">
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/teachers">Teachers</Link>
-            </li>
-            {currentUser && (
-              <li>
-                <Link to="/favorites">Favorites</Link>
-              </li>
-            )}
-          </ul>
+          <NavLinks currentUser={currentUser} backgroundColor={backgroundColor} hoverColor={hoverColor} />
           <div className="md:hidden flex items-center">
             <button onClick={toggleMenu}>
               <BurgerIcon isOpen={isMenuOpen} />
             </button>
           </div>
         </div>
-        <div className="font-bold hidden md:flex ml-16">
-          {currentUser ? (
-            <button className="w-24" type="button" onClick={handleLogout}>
-              Log out
-              <Icon
-                id="icon-logout"
-                className="ml-2"
-                style={{ fill: backgroundColor, stroke: backgroundColor, transition: 'background-color 0.3s' }}
-              />
-            </button>
-          ) : (
-            <div className="w-255 flex">
-              <button type="button" onClick={() => openModal(true)}>
-                Log in
-                <Icon
-                  id="icon-login"
-                  className="ml-2"
-                  style={{ fill: backgroundColor, stroke: backgroundColor, transition: 'background-color 0.3s' }}
-                />
-              </button>
-              <button
-                type="button"
-                onClick={() => openModal(false)}
-                className="flex justify-center rounded-xl text-white py-14 px-39 ml-4 w-nav-btn-reg bg-mainBlack hover:bg-gray-800"
-              >
-                Registration
-              </button>
-            </div>
-          )}
-        </div>
+        <AuthControls
+          currentUser={currentUser}
+          openModal={openModal}
+          handleLogout={handleLogout}
+          backgroundColor={backgroundColor}
+        />
       </div>
       {/* MOBILE MENU */}
       <MobileMenu
