@@ -1,6 +1,25 @@
+import { useTheme } from '@hooks/useTheme';
+
 const InfoPanel = () => {
+  const { bg: backgroundColor } = useTheme();
+
   return (
-    <section className="info-panel flex flex-col md:flex-row justify-center w-full mt-6 mx-auto max-w-1312 gap-[100px] rounded-30 custom-gap border-dashed border-2 border-borderGrey py-[35px]">
+    <section className="info-panel border-custom flex flex-col md:flex-row justify-center w-full mt-6 mx-auto max-w-1312 gap-[100px] rounded-30 custom-gap py-[35px] relative">
+      <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+        <rect
+          x="0"
+          y="0"
+          width="100%"
+          height="100%"
+          fill="transparent"
+          stroke={backgroundColor}
+          strokeWidth="4"
+          strokeDasharray="19 16"
+          rx="30"
+          ry="30"
+          style={{ transition: 'stroke 0.3s' }}
+        />
+      </svg>
       <article className="flex w-[237px] justify-center items-center">
         <p className="font-semibold text-[28px] info-width info-position text-pad">32,000 +</p>
         <p className="ml-4 text-sm w-24 info-width text-mob info-accent text-alfaGrey">Experienced tutors</p>

@@ -10,7 +10,7 @@ const TeacherModal: React.FC<ModalProps & { teacher: Teacher }> = ({ onClose, te
     <Modal onClose={onClose} className={`modal-content ${className}`}>
       <div className="text-start">
         <h3 className="text-40px font-medium mob-trial-title">Book trial lesson</h3>
-        <p className="mt-2">
+        <p className="mt-2 text-sm sm:text-base">
           Our experienced tutor will assess your current language level, discuss your learning goals, and tailor the
           lesson to your specific needs.
         </p>

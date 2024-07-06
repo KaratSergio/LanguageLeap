@@ -16,7 +16,7 @@ const ModalForm: React.FC<ModalFormProps> = ({ onClose }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="mt-10 w-full">
+    <form onSubmit={handleSubmit(onSubmit)} className="sm:mt-10 mt-2 w-full">
       <InputField
         placeholder="Full Name"
         register={register('name', { required: 'Name is required' })}
@@ -33,7 +33,7 @@ const ModalForm: React.FC<ModalFormProps> = ({ onClose }) => {
         register={register('phone', { required: 'Phone number is required' })}
         error={errors.phone}
       />
-      <Button type="submit" className="py-4 mt-10">
+      <Button type="submit" className="py-4 sm:mt-10 ">
         Book
       </Button>
     </form>

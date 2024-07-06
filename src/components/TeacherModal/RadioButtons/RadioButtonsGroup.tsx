@@ -11,7 +11,7 @@ const RadioButtonGroup: React.FC = () => {
   return (
     <div className="mt-10 mob-radio-box">
       <h3 className="mb-5 sm:text-2xl font-medium text-xl">What is your main reason for learning English?</h3>
-      <div className="flex flex-col max-w-sm  bg-white ">
+      <div className="flex flex-col max-w-sm bg-white">
         <RadioButton
           label="Career and business"
           value="career_and_business"
