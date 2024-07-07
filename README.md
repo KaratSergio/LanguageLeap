@@ -13,6 +13,8 @@ An app for a company that provides online language lessons.
 - [Configuration](#configuration)
 - [Server Commands](#server-commands)
 
+- Layout https://www.figma.com/design/dewf5jVviSTuWMMyU3d8Mc/Learn-Lingo?node-id=6-356&t=5SloCZAlvuJecCmT-0
+
 ## Project Overview
 
 - User authorization that provides access to a private environment.

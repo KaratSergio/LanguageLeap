@@ -336,6 +336,10 @@ button {
     left: 100px;
   }
 
+  .flex-wrapper > div > .flex {
+    padding: 6px 0 0 0;
+  }
+
   .mobile-like {
     top: -80px;
   }

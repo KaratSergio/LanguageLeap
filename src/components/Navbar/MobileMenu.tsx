@@ -15,19 +15,52 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isMenuOpen, setIsMenuOpen, curr
     >
       <ul className="flex flex-col gap-8 font-semibold text-5xl justify-center items-center mt-40">
         <li>
-          <Link to="/" onClick={() => setIsMenuOpen(false)}>
+          <Link className="flex items-center pr-12" to="/" onClick={() => setIsMenuOpen(false)}>
+            <Icon
+              id="icon-home"
+              className="mr-4"
+              style={{
+                fill: backgroundColor,
+                stroke: backgroundColor,
+                width: '40px',
+                height: '40px',
+                transition: 'background-color 0.3s',
+              }}
+            />
             Home
           </Link>
         </li>
         <li>
-          <Link to="/teachers" onClick={() => setIsMenuOpen(false)}>
+          <Link className="flex items-center" to="/teachers" onClick={() => setIsMenuOpen(false)}>
             Teachers
+            <Icon
+              id="icon-users"
+              className="ml-4"
+              style={{
+                fill: backgroundColor,
+                stroke: backgroundColor,
+                width: '40px',
+                height: '40px',
+                transition: 'background-color 0.3s',
+              }}
+            />
           </Link>
         </li>
         {currentUser && (
           <li>
-            <Link to="/favorites" onClick={() => setIsMenuOpen(false)}>
+            <Link className="flex items-center" to="/favorites" onClick={() => setIsMenuOpen(false)}>
               Favorites
+              <Icon
+                id="icon-like-on"
+                className="ml-4"
+                style={{
+                  fill: backgroundColor,
+                  stroke: backgroundColor,
+                  width: '40px',
+                  height: '40px',
+                  transition: 'background-color 0.3s',
+                }}
+              />
             </Link>
           </li>
         )}

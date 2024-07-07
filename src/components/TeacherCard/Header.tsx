@@ -16,7 +16,7 @@ const Header: React.FC<{ teacher: Teacher }> = ({ teacher }) => {
     <div className="relative flex items-start font-medium w-full max-w-968 justify-between">
       <div className="flex flex-col">
         <p className="text-mobile text-borderGrey mr-8">Languages</p>
-        <h2 className="text-2xl font-medium mt-2">
+        <h2 className="text-2xl mt-2">
           {teacher.name} {teacher.surname}
         </h2>
       </div>

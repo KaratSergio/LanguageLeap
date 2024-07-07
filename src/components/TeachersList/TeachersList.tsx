@@ -11,6 +11,7 @@ import Filter from '../Filters/Filters';
 import TeacherCard from '../TeacherCard/TeacherCard';
 
 import { selectLanguageFilter, selectLevelFilter, selectPriceFilter } from '@redux/filters/filters-selectors';
+import { resetFilters } from '@redux/filters/filters-slice';
 
 const TeachersList: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -52,6 +53,16 @@ const TeachersList: React.FC = () => {
       resetItemsToShow();
     }
   }, [filtersApplied, resetItemsToShow]);
+
+  // Reset filters on component unmount
+  useEffect(() => {
+    return () => {
+      dispatch(resetFilters());
+      localStorage.removeItem('languageFilter');
+      localStorage.removeItem('levelFilter');
+      localStorage.removeItem('priceFilter');
+    };
+  }, [dispatch]);
 
   if (loading && !teachers.length) {
     return <Loader loading={loading} />;
@@ -95,7 +106,7 @@ const TeachersList: React.FC = () => {
         <Button
           type="button"
           onClick={() => setItemsToShow((prevItemsToShow) => prevItemsToShow + 4)}
-          className="bg-btnColorY text-mainColor mx-auto py-4 px-12 max-w-[183px] rounded-xl"
+          className="text-mainColor mx-auto py-4 px-12 max-w-[183px] rounded-xl"
         >
           Load more
         </Button>
@@ -104,7 +115,7 @@ const TeachersList: React.FC = () => {
         <Button
           type="button"
           onClick={handleLoadMore}
-          className="bg-btnColorY text-mainColor mx-auto py-4 px-12 max-w-[183px] rounded-xl"
+          className="text-mainColor mx-auto py-4 px-12 max-w-[183px] rounded-xl"
         >
           Load more
         </Button>

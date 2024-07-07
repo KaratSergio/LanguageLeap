@@ -13,6 +13,9 @@
 - [Конфігурація](#конфігурація)
 - [Команди сервера](#команди-сервера)
 
+- Макет https://www.figma.com/design/dewf5jVviSTuWMMyU3d8Mc/Learn-Lingo?node-id=6-356&t=5SloCZAlvuJecCmT-0
+- Технічне завдання https://docs.google.com/document/d/1ZB_MFgnnJj7t7OXtv5hESSwY6xRgVoACZKzgZczWc3Y/edit?pli=1
+
 ## Огляд проекту
 
 - Авторізація користувачів яка надае доступ до приватного середовища.
